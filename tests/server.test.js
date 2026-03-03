@@ -65,6 +65,9 @@ test('web server: catalog and extractor endpoints work', { timeout: 60000 }, asy
   const per = await fetch(`${baseUrl}/api/peripherals?mcu=STM32C011D6Yx`).then((r) => r.json());
   assert.ok(per.peripherals.uart.includes('usart1'));
 
+  const perH563 = await fetch(`${baseUrl}/api/peripherals?mcu=STM32H563ZITx`).then((r) => r.json());
+  assert.ok(perH563.peripherals.spi.includes('spi1'));
+
   const okExtractRes = await fetch(`${baseUrl}/api/extract?mcu=STM32C011D6Yx&peripheral=USART1`);
   assert.equal(okExtractRes.status, 200, stderr);
   const okExtract = await okExtractRes.json();

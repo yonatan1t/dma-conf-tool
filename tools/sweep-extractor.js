@@ -23,11 +23,13 @@ function parseArgs(argv) {
 
 function extractPeripheralsFromMcuXml(xml) {
   const out = new Set();
-  const re = /<IP\b[^>]*InstanceName="([^"]+)"[^>]*Name="([^"]+)"[^>]*\/>/g;
+  const re = /<IP\b([^>]*)>/g;
   let m;
   while ((m = re.exec(xml))) {
-    const instance = m[1] || '';
-    const ipName = m[2] || '';
+    const attrs = m[1] || '';
+    const instance = ((attrs.match(/\bInstanceName="([^"]+)"/) || [])[1] || '');
+    const ipName = ((attrs.match(/\bName="([^"]+)"/) || [])[1] || '');
+    if (!instance || !ipName) continue;
     if ((ipName === 'USART' || ipName === 'UART' || ipName === 'LPUART') && /^((USART|UART|LPUART)\d+)$/i.test(instance)) {
       out.add(instance.toUpperCase());
     }
