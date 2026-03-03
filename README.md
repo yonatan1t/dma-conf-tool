@@ -1,36 +1,62 @@
 # Zephyr DMA Config Helper
 
-A static web tool to help embedded developers generate STM32 + Zephyr DMA snippets for UART/SPI.
+A web tool to help embedded developers generate STM32 + Zephyr DMA snippets for UART/SPI.
 
 ## Features (MVP)
 
-- Select STM32 family/SoC/peripheral instance
-- Pick TX/RX DMA mappings from a curated local DB
+- Select STM32 family/MCU/peripheral instance
+- Pick TX/RX DMA mappings from live CubeMX DB extraction (`tools/cubemx-dma-extract.js`)
 - Generate `*.overlay` snippet
 - Generate `prj.conf` additions
 - Show warnings and verification checklist
 - Copy/download outputs
 - Copy a shareable URL for current config
 
-## Run locally
+## Run locally (with extractor API)
 
 From the repository root:
 
 ```bash
-python3 -m http.server 8080
+node tools/web-server.js
 ```
 
-Open `http://localhost:8080`.
+Open `http://127.0.0.1:8080`.
 
-## Deploy to GitHub Pages
+This serves:
 
-This repo includes `.github/workflows/deploy-pages.yml`.
+- Static UI (`/`)
+- Catalog API (`/api/families`, `/api/mcus`, `/api/peripherals`)
+- Extractor API (`/api/extract`) backed by `tools/cubemx-dma-extract.js`
 
-1. Push to `main`
-2. In GitHub repo settings:
-   - Enable Pages
-   - Source: GitHub Actions
-3. The workflow publishes the static site automatically.
+Examples:
+
+```bash
+curl "http://127.0.0.1:8080/api/health"
+curl "http://127.0.0.1:8080/api/families"
+curl "http://127.0.0.1:8080/api/mcus?family=STM32H7"
+curl "http://127.0.0.1:8080/api/peripherals?mcu=STM32H743ZITx"
+curl "http://127.0.0.1:8080/api/extract?board=NUCLEO-F429ZI&peripheral=USART2"
+curl "http://127.0.0.1:8080/api/extract?mcu=STM32H743ZITx&peripheral=USART1"
+```
+
+## Tests
+
+Run the automated tests:
+
+```bash
+npm test
+```
+
+This validates:
+- extractor on stream-based DMA MCUs
+- extractor on channel-based DMA MCUs
+- board-to-MCU resolution
+- web API catalog/extract endpoints
+
+## Deploy note
+
+The UI now calls `/api/extract`, so pure static hosting (GitHub Pages only) is not enough by itself.
+Use a runtime that can execute `node tools/web-server.js` (or implement an equivalent backend endpoint).
 
 ## Data files
 

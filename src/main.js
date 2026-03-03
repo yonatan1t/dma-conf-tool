@@ -1,7 +1,13 @@
-const FAMILY_FILES = {
-  stm32f4: './data/stm32f4.json',
-  stm32h7: './data/stm32h7.json'
-};
+const BASE_PATH = (() => {
+  if (!location.hostname.endsWith('github.io')) return '';
+  const firstSegment = location.pathname.split('/').filter(Boolean)[0];
+  return firstSegment ? `/${firstSegment}` : '';
+})();
+
+function withBase(path) {
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  return `${BASE_PATH}${normalized}`;
+}
 
 const el = {
   family: document.querySelector('#family'),
@@ -22,8 +28,11 @@ const el = {
 };
 
 const state = {
-  db: {},
-  currentFamily: 'stm32f4'
+  currentFamily: '',
+  familyList: [],
+  mcusByFamily: {},
+  peripheralsByMcu: {},
+  currentMappings: []
 };
 
 function setStatus(message, type = '') {
@@ -31,15 +40,18 @@ function setStatus(message, type = '') {
   el.status.className = `status ${type}`.trim();
 }
 
-async function loadDb(family) {
-  const path = FAMILY_FILES[family];
-  const response = await fetch(path);
-  if (!response.ok) {
-    throw new Error(`Could not load data file: ${path}`);
+async function apiGet(path) {
+  const response = await fetch(withBase(path));
+  let payload = null;
+  try {
+    payload = await response.json();
+  } catch (_err) {
+    throw new Error(`API did not return JSON for ${path}`);
   }
-  const data = await response.json();
-  state.db[family] = data;
-  return data;
+  if (!response.ok) {
+    throw new Error(payload.error ? `${payload.error}: ${payload.details || ''}` : `API request failed: ${path}`);
+  }
+  return payload;
 }
 
 function option(value, label) {
@@ -49,35 +61,100 @@ function option(value, label) {
   return opt;
 }
 
+async function loadFamilies() {
+  const payload = await apiGet('/api/families');
+  state.familyList = payload.families || [];
+}
+
+async function loadMcusForFamily(family) {
+  if (!state.mcusByFamily[family]) {
+    const payload = await apiGet(`/api/mcus?family=${encodeURIComponent(family)}`);
+    state.mcusByFamily[family] = payload.mcus || [];
+  }
+  return state.mcusByFamily[family];
+}
+
+async function loadPeripheralsForMcu(mcu) {
+  if (!state.peripheralsByMcu[mcu]) {
+    const payload = await apiGet(`/api/peripherals?mcu=${encodeURIComponent(mcu)}`);
+    state.peripheralsByMcu[mcu] = payload.peripherals || { uart: [], spi: [] };
+  }
+  return state.peripheralsByMcu[mcu];
+}
+
 function fillFamilies() {
   el.family.innerHTML = '';
-  Object.keys(FAMILY_FILES).forEach((family) => {
-    el.family.append(option(family, family.toUpperCase()));
+  state.familyList.forEach((family) => {
+    el.family.append(option(family, family));
   });
 }
 
-function fillSocs(db) {
+function fillSocs(mcus) {
   el.soc.innerHTML = '';
-  db.soc.forEach((soc) => el.soc.append(option(soc, soc)));
+  mcus.forEach((mcu) => el.soc.append(option(mcu, mcu)));
 }
 
-function fillInstances(db) {
+function fillInstances(peripherals) {
   const type = el.ptype.value;
   el.instance.innerHTML = '';
-  (db.peripherals[type] || []).forEach((name) => {
+  (peripherals[type] || []).forEach((name) => {
     el.instance.append(option(name, name));
   });
 }
 
 function mapLabel(m) {
-  const req = m.request === null ? 'no-req' : `req=${m.request}`;
-  return `${m.controller} stream${m.stream} ch${m.channel} ${req}`;
+  const cell2 = Number.isInteger(m.channel)
+    ? `ch${m.channel}`
+    : (Number.isInteger(m.requestId) ? `req_id=${m.requestId}` : 'req/ch=?');
+  const req = m.requestToken ? ` ${m.requestToken}` : '';
+  return `${m.controller} stream${m.stream} ${cell2}${req}`;
 }
 
-function fillMappings(db) {
+async function fetchMappingsFromExtractor() {
+  const mcu = el.soc.value;
   const instance = el.instance.value;
-  const tx = db.mappings.filter((m) => m.peripheral === instance && m.direction === 'tx');
-  const rx = db.mappings.filter((m) => m.peripheral === instance && m.direction === 'rx');
+  if (!mcu || !instance) return [];
+
+  const payload = await apiGet(`/api/extract?mcu=${encodeURIComponent(mcu)}&peripheral=${encodeURIComponent(instance.toUpperCase())}`);
+  const normalizedPeripheral = instance.toLowerCase();
+  return payload.candidates.map((c) => ({
+    peripheral: normalizedPeripheral,
+    direction: c.direction,
+    controller: c.controller,
+    stream: c.stream,
+    channel: Number.isInteger(c.channel) ? c.channel : null,
+    requestId: Number.isInteger(c.requestId) ? c.requestId : null,
+    requestToken: c.requestToken || null
+  }));
+}
+
+async function fillMappings() {
+  const instance = el.instance.value;
+  if (!instance) {
+    state.currentMappings = [];
+    el.txMap.innerHTML = '';
+    el.rxMap.innerHTML = '';
+    el.txMap.append(option('', 'No TX mapping found'));
+    el.rxMap.append(option('', 'No RX mapping found'));
+    return;
+  }
+
+  let mappings = [];
+  try {
+    mappings = await fetchMappingsFromExtractor();
+  } catch (err) {
+    state.currentMappings = [];
+    el.txMap.innerHTML = '';
+    el.rxMap.innerHTML = '';
+    el.txMap.append(option('', 'No TX mapping found'));
+    el.rxMap.append(option('', 'No RX mapping found'));
+    setStatus(`No DMA mapping available: ${err.message}`, 'warn');
+    return;
+  }
+  state.currentMappings = mappings;
+
+  const tx = mappings.filter((m) => m.peripheral === instance && m.direction === 'tx');
+  const rx = mappings.filter((m) => m.peripheral === instance && m.direction === 'rx');
 
   el.txMap.innerHTML = '';
   el.rxMap.innerHTML = '';
@@ -85,12 +162,8 @@ function fillMappings(db) {
   tx.forEach((m, idx) => el.txMap.append(option(String(idx), mapLabel(m))));
   rx.forEach((m, idx) => el.rxMap.append(option(String(idx), mapLabel(m))));
 
-  if (!tx.length) {
-    el.txMap.append(option('', 'No TX mapping found'));
-  }
-  if (!rx.length) {
-    el.rxMap.append(option('', 'No RX mapping found'));
-  }
+  if (!tx.length) el.txMap.append(option('', 'No TX mapping found'));
+  if (!rx.length) el.rxMap.append(option('', 'No RX mapping found'));
 }
 
 function renderDmaFlags(direction) {
@@ -110,14 +183,20 @@ function renderDmaFlags(direction) {
 }
 
 function renderOverlay(instance, txMap, rxMap) {
-  const txReqComment = txMap.request === null ? '' : ` /* request=${txMap.request} */`;
-  const rxReqComment = rxMap.request === null ? '' : ` /* request=${rxMap.request} */`;
+  const txReqComment = txMap.requestToken ? ` /* ${txMap.requestToken} */` : '';
+  const rxReqComment = rxMap.requestToken ? ` /* ${rxMap.requestToken} */` : '';
+  const txCell2 = Number.isInteger(txMap.channel)
+    ? txMap.channel
+    : (Number.isInteger(txMap.requestId) ? txMap.requestId : 'REQ_OR_CH_ID_TX');
+  const rxCell2 = Number.isInteger(rxMap.channel)
+    ? rxMap.channel
+    : (Number.isInteger(rxMap.requestId) ? rxMap.requestId : 'REQ_OR_CH_ID_RX');
 
   return `/* Generated by Zephyr DMA Config Helper */\n` +
     `&${instance} {\n` +
     `  status = "okay";\n` +
-    `  dmas = <&${txMap.controller} ${txMap.stream} ${txMap.channel} (${renderDmaFlags('tx')})>${txReqComment},\n` +
-    `         <&${rxMap.controller} ${rxMap.stream} ${rxMap.channel} (${renderDmaFlags('rx')})>${rxReqComment};\n` +
+    `  dmas = <&${txMap.controller} ${txMap.stream} ${txCell2} (${renderDmaFlags('tx')})>${txReqComment},\n` +
+    `         <&${rxMap.controller} ${rxMap.stream} ${rxCell2} (${renderDmaFlags('rx')})>${rxReqComment};\n` +
     `  dma-names = "tx", "rx";\n` +
     `};\n`;
 }
@@ -147,21 +226,21 @@ function validate(instance, txMap, rxMap) {
   const errors = [];
 
   checks.push(`Target family: ${el.family.value}`);
-  checks.push(`SoC: ${el.soc.value}`);
+  checks.push(`MCU: ${el.soc.value}`);
   checks.push(`Peripheral: ${instance}`);
 
   if (!txMap || !rxMap) {
-    errors.push('Missing TX and/or RX mapping in local DB.');
+    errors.push('Missing TX and/or RX mapping from extractor output.');
   }
 
   if (txMap && rxMap && txMap.controller === rxMap.controller && txMap.stream === rxMap.stream) {
     errors.push('TX and RX currently use the same DMA stream. Pick different streams.');
   }
 
-  if (txMap && txMap.request !== null) {
+  if (txMap && (txMap.requestToken || Number.isInteger(txMap.requestId))) {
     warnings.push('TX request id is present; verify DMAMUX request line in RM and Zephyr docs.');
   }
-  if (rxMap && rxMap.request !== null) {
+  if (rxMap && (rxMap.requestToken || Number.isInteger(rxMap.requestId))) {
     warnings.push('RX request id is present; verify DMAMUX request line in RM and Zephyr docs.');
   }
 
@@ -173,8 +252,7 @@ function validate(instance, txMap, rxMap) {
 }
 
 function allMappingsFor(instance, direction) {
-  const db = state.db[state.currentFamily];
-  return db.mappings.filter((m) => m.peripheral === instance && m.direction === direction);
+  return state.currentMappings.filter((m) => m.peripheral === instance && m.direction === direction);
 }
 
 function getSelectedMappings() {
@@ -285,52 +363,81 @@ function toQuery() {
 }
 
 function restoreFromQuery() {
-  const p = new URLSearchParams(location.search);
-  const family = p.get('family');
-  if (family && FAMILY_FILES[family]) {
-    el.family.value = family;
-    state.currentFamily = family;
-    return p;
-  }
-  return p;
+  return new URLSearchParams(location.search);
 }
 
 async function refreshForFamily(query = null) {
   state.currentFamily = el.family.value;
-  const db = state.db[state.currentFamily] || (await loadDb(state.currentFamily));
-  el.dbVersion.textContent = `DB: ${db.family} @ ${db.version}`;
+  const mcus = await loadMcusForFamily(state.currentFamily);
+  fillSocs(mcus);
 
-  fillSocs(db);
-  fillInstances(db);
-  fillMappings(db);
+  if (query && query.get('soc') && mcus.includes(query.get('soc'))) {
+    el.soc.value = query.get('soc');
+  }
+
+  const peripherals = await loadPeripheralsForMcu(el.soc.value);
+  if (query && query.get('ptype')) el.ptype.value = query.get('ptype');
+  fillInstances(peripherals);
+
+  const instances = peripherals[el.ptype.value] || [];
+  if (query && query.get('instance') && instances.includes(query.get('instance'))) {
+    el.instance.value = query.get('instance');
+  }
+
+  await fillMappings();
 
   if (query) {
-    if (query.get('soc')) el.soc.value = query.get('soc');
-    if (query.get('ptype')) el.ptype.value = query.get('ptype');
-
-    fillInstances(db);
-    if (query.get('instance')) el.instance.value = query.get('instance');
-
-    fillMappings(db);
     if (query.get('tx')) el.txMap.value = query.get('tx');
     if (query.get('rx')) el.rxMap.value = query.get('rx');
     if (query.get('priority')) el.priority.value = query.get('priority');
     if (query.get('mode')) el.mode.value = query.get('mode');
   }
+
+  el.dbVersion.textContent = `Families: ${state.familyList.length} (live CubeMX DB)`;
 }
 
 async function init() {
+  await loadFamilies();
+  if (!state.familyList.length) {
+    throw new Error('No STM32 families found in db/mcu');
+  }
+
   fillFamilies();
 
   const query = restoreFromQuery();
+  const requestedFamily = query.get('family');
+  if (requestedFamily && state.familyList.includes(requestedFamily)) {
+    el.family.value = requestedFamily;
+  } else {
+    el.family.value = state.familyList[0];
+  }
+
   await refreshForFamily(query);
 
-  el.family.addEventListener('change', () => refreshForFamily());
-  el.ptype.addEventListener('change', () => {
-    fillInstances(state.db[state.currentFamily]);
-    fillMappings(state.db[state.currentFamily]);
+  el.family.addEventListener('change', () => refreshForFamily().then(generate).catch((err) => setStatus(err.message, 'err')));
+
+  el.soc.addEventListener('change', async () => {
+    try {
+      const peripherals = await loadPeripheralsForMcu(el.soc.value);
+      fillInstances(peripherals);
+      await fillMappings();
+      generate();
+    } catch (err) {
+      setStatus(err.message, 'err');
+    }
   });
-  el.instance.addEventListener('change', () => fillMappings(state.db[state.currentFamily]));
+
+  el.ptype.addEventListener('change', () => {
+    loadPeripheralsForMcu(el.soc.value)
+      .then((peripherals) => {
+        fillInstances(peripherals);
+        return fillMappings();
+      })
+      .then(generate)
+      .catch((err) => setStatus(err.message, 'err'));
+  });
+
+  el.instance.addEventListener('change', () => fillMappings().then(generate).catch((err) => setStatus(err.message, 'err')));
 
   el.generate.addEventListener('click', generate);
   el.share.addEventListener('click', async () => {
