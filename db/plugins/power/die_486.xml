@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?> <!-- STM32N6 -->
+<Die xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../../../../../../../doc/V4/Development/Specifications/db/plugins/power/die.xsd"
+	Number="486">
+	<Datasheets>
+	    <Datasheet Ref="Yes" DocId="00001" Rev="0" InternetId="stm32n657a0" DS="00001"> <!-- STM32N645A0HxQ -->
+		</Datasheet>
+        <Datasheet Ref="Yes" DocId="00002" Rev="0" InternetId="stm32n657a0" DS="00002"> <!-- STM32N647A0HxQ -->
+        </Datasheet>
+	</Datasheets>
+	<MaxCurrent Value=""/><!-- Not yet available in DS -->
+	<!-- Sum(IVDD) Total current into sum of all VDD_x power lines (source) / Maximum current into each VDD_x power line (source)(1): IDD(pin)=100mA -->
+    <TJMax Value="125"/> <!-- General operating conditions: range 6 = 125 -->
+	<Packages>
+	    <Package Names="VFBGA264" ThermalResistance="91"/>
+	    <Package Names="VFBGA223" ThermalResistance="91"/>
+	    <Package Names="VFBGA198" ThermalResistance="91"/>
+	    <Package Names="VFBGA178" ThermalResistance="91"/>
+        <Package Names="VFBGA169" ThermalResistance="91"/>
+        <Package Names="VFBGA142" ThermalResistance="91"/>
+	</Packages>
+    <DMIPS FlashValueByMHz="1280" RamValueByMhz="1280"/>
+    <Peripherals>
+        <Peripheral Name="ADC1" ImpactPinout="Yes:ADC1" Type="Analog" Prescaler="AHB1" MaxFreq="90000000">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="ADC2" ImpactPinout="Yes:ADC2" Type="Analog" Prescaler="AHB1" MaxFreq="90000000">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="ADF1" ImpactPinout="Yes:ADF1" Type="Analog" Prescaler="AHB1" MaxFreq="90000000">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+         <Peripheral Name="BSEC" ImpactPinout="Yes:BSEC" Type="Digital" Prescaler="APB1">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="CACHEAXI" ImpactPinout="Yes:CACHEAXI" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="CRC" ImpactPinout="Yes:CRC" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="CSI" ImpactPinout="Yes:CSI" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="CRYP" ImpactPinout="Yes:CRYP" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="DCMI" ImpactPinout="Yes:DCMI" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="DCMIPP" ImpactPinout="Yes:DCMIPP" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="DEBUG" ImpactPinout="Yes:DEBUG" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="DMA2D" ImpactPinout="Yes:DMA2D" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="DTS" ImpactPinout="Yes:DTS" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="ETH1" ImpactPinout="Yes:ETH1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="FDCAN1" ImpactPinout="Yes:FDCAN1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="FDCAN2" ImpactPinout="Yes:FDCAN2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="FDCAN3" ImpactPinout="Yes:FDCAN3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="FMC" ImpactPinout="Yes:FMC" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GFXMMU" ImpactPinout="Yes:GFXMMU" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GFXTIM" ImpactPinout="Yes:GFXTIM" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPDMA1" ImpactPinout="Yes:GPDMA1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOA" ImpactPinout="Yes:GPIOA" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOB" ImpactPinout="Yes:GPIOB" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOC" ImpactPinout="Yes:GPIOC" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOD" ImpactPinout="Yes:GPIOD" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOE" ImpactPinout="Yes:GPIOE" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOF" ImpactPinout="Yes:GPIOF" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOG" ImpactPinout="Yes:GPIOG" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOH" ImpactPinout="Yes:GPIOH" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPION" ImpactPinout="Yes:GPION" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOO" ImpactPinout="Yes:GPIOO" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPIOP" ImpactPinout="Yes:GPIOP" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="GPU2D" ImpactPinout="Yes:GPU2D" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="HASH" ImpactPinout="Yes:HASH" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="HDP" ImpactPinout="Yes:HDP" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="HPDMA1" ImpactPinout="Yes:HPDMA1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I2C1" ImpactPinout="Yes:I2C1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I2C2" ImpactPinout="Yes:I2C2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I2C3" ImpactPinout="Yes:I2C3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I2C4" ImpactPinout="Yes:I2C4" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I3C1" ImpactPinout="Yes:I3C1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I3C2" ImpactPinout="Yes:I3C2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I2S1" ImpactPinout="Yes:I2S1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I2S2" ImpactPinout="Yes:I2S2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I2S3" ImpactPinout="Yes:I2S3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="I2S6" ImpactPinout="Yes:I2S6" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="IAC" ImpactPinout="Yes:IAC" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="ICACHE" ImpactPinout="Yes:ICACHE" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="IWDG" ImpactPinout="Yes:IWDG" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="JPEG" ImpactPinout="Yes:JPEG" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="LPTIM1" ImpactPinout="Yes:LPTIM1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="LPTIM2" ImpactPinout="Yes:LPTIM2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="LPTIM3" ImpactPinout="Yes:LPTIM3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="LPTIM4" ImpactPinout="Yes:LPTIM4" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="LPTIM5" ImpactPinout="Yes:LPTIM5" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="LPUART1" ImpactPinout="Yes:LPUART1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="LTDC" ImpactPinout="Yes:LTDC" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="MDF1" ImpactPinout="Yes:MDF1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="MDIOS" ImpactPinout="Yes:MDIOS" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="MCE1" ImpactPinout="Yes:MCE1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="MCE2" ImpactPinout="Yes:MCE2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="MCE3" ImpactPinout="Yes:MCE3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="MCE4" ImpactPinout="Yes:MCE4" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="NPU" ImpactPinout="Yes:NPU" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="NVIC" ImpactPinout="Yes:NVIC" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="PKA" ImpactPinout="Yes:PKA" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="PSSI" ImpactPinout="Yes:PSSI" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="PWR" ImpactPinout="Yes:PWR" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="XSPI1" ImpactPinout="Yes:XSPI1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="XSPI2" ImpactPinout="Yes:XSPI2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="XSPI3" ImpactPinout="Yes:XSPI3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="XSPIM" ImpactPinout="Yes:XSPIM" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="RAMCFG" ImpactPinout="Yes:RAMCFG" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="RCC" ImpactPinout="Yes:RCC" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="RNG" ImpactPinout="Yes:RNG" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="RTC" ImpactPinout="Yes:RTC" Type="Analog" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SAES" ImpactPinout="Yes:SAES" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SAI1" ImpactPinout="Yes:SAI1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SAI2" ImpactPinout="Yes:SAI2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SDMMC1" ImpactPinout="Yes:SDMMC1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SDMMC2" ImpactPinout="Yes:SDMMC2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SPDIFRX1" ImpactPinout="Yes:SPDIFRX1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SPI1" ImpactPinout="Yes:SPI1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SPI2" ImpactPinout="Yes:SPI2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SPI3" ImpactPinout="Yes:SPI3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SPI4" ImpactPinout="Yes:SPI4" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SPI5" ImpactPinout="Yes:SPI5" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SPI6" ImpactPinout="Yes:SPI6" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="SYS" ImpactPinout="Yes:SYS" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TAMP" ImpactPinout="Yes:TAMP" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM1" ImpactPinout="Yes:TIM1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM2" ImpactPinout="Yes:TIM2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM3" ImpactPinout="Yes:TIM3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM4" ImpactPinout="Yes:TIM4" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM5" ImpactPinout="Yes:TIM5" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM6" ImpactPinout="Yes:TIM6" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM7" ImpactPinout="Yes:TIM7" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM8" ImpactPinout="Yes:TIM8" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM9" ImpactPinout="Yes:TIM9" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM10" ImpactPinout="Yes:TIM10" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM11" ImpactPinout="Yes:TIM11" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM12" ImpactPinout="Yes:TIM12" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM13" ImpactPinout="Yes:TIM13" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM14" ImpactPinout="Yes:TIM14" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM15" ImpactPinout="Yes:TIM15" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM16" ImpactPinout="Yes:TIM16" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM17" ImpactPinout="Yes:TIM17" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="TIM18" ImpactPinout="Yes:TIM18" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="UART4" ImpactPinout="Yes:UART4" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="UART5" ImpactPinout="Yes:UART5" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="UART7" ImpactPinout="Yes:UART7" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="UART8" ImpactPinout="Yes:UART8" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="UART9" ImpactPinout="Yes:UART9" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="UCPD1" ImpactPinout="Yes:UCPD1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="USART1" ImpactPinout="Yes:USART1" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="USART2" ImpactPinout="Yes:USART2" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="USART3" ImpactPinout="Yes:USART3" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="USART6" ImpactPinout="Yes:USART6" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="USART10" ImpactPinout="Yes:USART10" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="USB1_OTG_HS" ImpactPinout="Yes:USB1_OTG_HS" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="USB2_OTG_HS" ImpactPinout="Yes:USB2_OTG_HS" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="USB_OTG_HS" ImpactPinout="Yes:USB_OTG_HS" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="VENC" ImpactPinout="Yes:VENC" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/>
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="VREFBUF" ImpactPinout="Yes:VREFBUF" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+        <Peripheral Name="WWDG" ImpactPinout="Yes:WWDG" Type="Digital" Prescaler="AHB4">
+            <PeripheralConsumption Vdd="3.0" Temperature="25">
+                <PowerModes PowerModesList="RUN,SLEEP,STOP">
+                    <Consumption ConsumptionByMHz="0"/> 
+                </PowerModes>
+            </PeripheralConsumption>
+        </Peripheral>
+    </Peripherals>
+	<PeripheralsLists>
+		<PowerMode Name="RUN">
+			<Filter IpsFromList="All"/>
+		</PowerMode>
+        <PowerMode Name="SLEEP">
+            <Filter IpsFromList="All"/>
+        </PowerMode>
+	    <PowerMode Name="STOP">
+            <Filter IpsFromList="All"/>
+		</PowerMode>
+		<PowerMode Name="STANDBY">
+		    <Filter IpsFromList="Include"/>
+            <Peripheral Name="RTC"/>
+            <Peripheral Name="TAMP"/>
+		    <Peripheral Name="IWDG"/>
+		    <Peripheral Name="GPIOA"/>
+            <Peripheral Name="GPIOB"/>
+            <Peripheral Name="GPIOC"/>
+            <Peripheral Name="GPIOD"/>
+            <Peripheral Name="GPIOE"/>
+            <Peripheral Name="GPIOF"/>
+            <Peripheral Name="GPIOG"/>
+            <Peripheral Name="GPIOH"/>
+            <Peripheral Name="GPION"/>
+            <Peripheral Name="GPIOO"/>
+            <Peripheral Name="GPIOP"/>
+		</PowerMode>
+	    <PowerMode Name="VBAT">
+	        <Filter IpsFromList="Include"/>
+            <Peripheral Name="RTC"/>
+            <Peripheral Name="TAMP"/>
+	    </PowerMode>
+	</PeripheralsLists>
+</Die>

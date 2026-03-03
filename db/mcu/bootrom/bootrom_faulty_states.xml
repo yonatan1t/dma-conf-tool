@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Families>
+    <Family name="STM32MP2">
+        <Scopes>
+            <Scope name="A35 Master" id="A35TD_TZEN">
+                <BootDevices>
+                    <BootDevice instanceName="USB3DR" name="USB3DR" type="alone"/>
+                </BootDevices>
+            </Scope>
+            <Scope name="A35 Master" id="A35TD_TZDIS">
+                <BootDevices>
+                    <BootDevice instanceName="USB3DR" name="USB3DR" type="alone"/>
+                </BootDevices>
+            </Scope>
+
+            <Scope name="M33 Master" id="M33TD">
+                <BootDevices/>
+            </Scope>
+            <Scope name="All" id="all">
+                <BootDevices>
+                    <BootDevice instanceName="FMC" name="FMC" type="secondary"/>
+                    <BootDevice instanceName="SDMMC1" name="SDMMC1" type="secondary"/>
+                    <BootDevice instanceName="SDMMC2" name="SDMMC2" type="secondary"/>
+                    <BootDevice instanceName="OCTOSPI1" name="OCTOSPI1" type="secondary"/>
+                    <BootDevice instanceName="OCTOSPI2" name="OCTOSPI2" type="primary"/>
+                </BootDevices>
+            </Scope>
+        </Scopes>
+        <Contexts>
+            <Context name="BootROM" id="bootrom"/>
+            <Context name="FSBL-A" id="fsbla"/>
+            <Context name="FSBL-M" id="fsblm"/>
+        </Contexts>
+        <FaultyStates>
+		    <FaultyState name="NoFSBLAAssignmentsPossible" scope="all" >
+                <OuterLoop bootDeviceType="secondary">
+                 <Condition diagnostic="" expression="($IpInstance_BOOTLOADER_FSBLA)"/>
+                 <InnerLoop bootDeviceName="!OCTOSPI1">
+                    <Condition diagnostic="" expression="(($IpInstanceOuter=$IpInstanceInner) &amp; (!($IpInstanceInner_BOOTROM))) "/>
+					<Diagnostic>Faulty state detected for %s : TF-A assignments possible only if assigned in BootRom</Diagnostic>
+					<NoteCondition diagnostic="" expression="OCTOSPI1_BOOTLOADER_FSBLM"/>
+					<Note>OCTOSPI1 assignment in MCUBoot is not supported by OSTLinux </Note>
+					</InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+            <FaultyState name="NoFSBLAAssignmentsPossibleForOCTOSPI1" scope="all" >
+                <OuterLoop bootDeviceType="secondary">
+                  <Condition diagnostic="" expression="($IpInstance_BOOTLOADER_FSBLA)"/>
+                  <InnerLoop bootDeviceName="OCTOSPI1">
+                     <Condition diagnostic="" expression="(($IpInstanceOuter=$IpInstanceInner) &amp; (!($IpInstanceInner_BOOTROM))) "/>
+					 <Diagnostic>Faulty state detected for %s : TF-A assignments possible only if assigned in BootRom</Diagnostic>
+					 <NoteCondition diagnostic="" expression="OCTOSPI1_BOOTLOADER_FSBLM"/>
+					 <Note>OCTOSPI1 assignment in MCUBoot is not supported by OSTLinux </Note>
+				   </InnerLoop>
+                </OuterLoop>
+             </FaultyState>
+			<FaultyState name="NoFSBLAAssignmentsPossibleForOCTOSPI2" scope="all" >
+                 <OuterLoop bootDeviceType="primary">
+                    <Condition diagnostic="" expression="OCTOSPI2_BOOTLOADER_FSBLA"/>
+                    <InnerLoop bootDeviceType="secondary">
+                        <Condition diagnostic="" expression="!OCTOSPI1_BOOTROM"/>
+                        <Diagnostic>Faulty state detected for OCTOSPI2 : TF-A assignments possible only if OCTOSPI1 assigned in BootRom</Diagnostic>
+						<NoteCondition diagnostic="" expression="OCTOSPI2_BOOTLOADER_FSBLA"/>
+						<Note>OCTOSPI2 assignment in TF-A is not supported by OSTLinux </Note>
+                    </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+			<FaultyState name="NoFSBLMAssignmentsPossible" scope="M33TD" >
+                <OuterLoop bootDeviceType="secondary">
+                    <Condition diagnostic="" expression="($IpInstance_BOOTLOADER_FSBLM)"/>
+                    <InnerLoop bootDeviceName="!OCTOSPI1">
+                        <Condition diagnostic="" expression="($IpInstanceOuter=$IpInstanceInner) &amp; (!($IpInstanceInner_BOOTROM))"/>
+                        <Diagnostic>Faulty state detected for $IpInstanceOuter: MCUBoot assignments possible only if assigned in BootRom</Diagnostic>
+						<NoteCondition diagnostic="" expression="OCTOSPI1_BOOTLOADER_FSBLM"/>
+						<Note>OCTOSPI1 assignment in MCUBoot is not supported by OSTLinux </Note>
+				    </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+			<FaultyState name="NoFSBLMAssignmentsPossibleOCTOSPI1" scope="M33TD" >
+                <OuterLoop bootDeviceType="secondary">
+                    <Condition diagnostic="" expression="($IpInstance_BOOTLOADER_FSBLM)"/>
+                    <InnerLoop bootDeviceName="OCTOSPI1">
+                        <Condition diagnostic="" expression=" OCTOSPI1_BOOTLOADER_FSBLM &amp; !OCTOSPI1_BOOTROM"/>
+                        <Diagnostic>Faulty state detected for $IpInstanceOuter: MCUBoot assignments possible only if assigned in BootRom</Diagnostic>
+						<NoteCondition diagnostic="" expression="OCTOSPI1_BOOTLOADER_FSBLM"/>
+						<Note>OCTOSPI1 assignment in MCUBoot is not supported by OSTLinux </Note>
+				    </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+			<FaultyState name="NoFSBLMAssignmentsPossibleOCTOSPI2" scope="M33TD" >
+                <OuterLoop bootDeviceType="primary">
+                    <Condition diagnostic="" expression="(OCTOSPI2_BOOTLOADER_FSBLM)"/>
+                    <InnerLoop bootDeviceName="OCTOSPI1">
+                        <Condition diagnostic="" expression="!OCTOSPI1_BOOTROM"/>
+                        <Diagnostic>Faulty state detected for OCTOSPI2: MCUBoot assignments possible only if OCTOSPI1 assigned in BootRom</Diagnostic>
+						<NoteCondition diagnostic="" expression="OCTOSPI2_BOOTLOADER_FSBLA"/>
+						<Note>OCTOSPI2 assignment in TF-A is not supported by OSTLinux </Note>
+                    </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+			<FaultyState name="BOOTROMOCTOSPI1OCTOSPI1Possible" scope="all" >
+                <OuterLoop bootDeviceName="OCTOSPI1">
+                    <Condition diagnostic="" expression="OCTOSPI1_BOOTROM"/>
+                    <InnerLoop bootDeviceName="OCTOSPI1">
+                        <Condition diagnostic="" expression="OCTOSPI1_BOOTLOADER_FSBLM &amp; OCTOSPI1_BOOTROM "/>
+					    <Diagnostic></Diagnostic>
+						<NoteCondition diagnostic="" expression="(OCTOSPI1_BOOTLOADER_FSBLA  &amp; OCTOSPI1_BOOTLOADER_FSBLM &amp; OCTOSPI1_BOOTROM) |(OCTOSPI1_BOOTLOADER_FSBLM &amp; OCTOSPI1_BOOTROM)"/>
+						<Note>OCTOSPI1 assignment in MCUBoot is not supported by OSTLinux</Note>
+                    </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+			<FaultyState name="BOOTROMOCTOSPI1OCTOSPI2Possible" scope="all" >
+                <OuterLoop bootDeviceName="OCTOSPI1">
+                    <Condition diagnostic="" expression="OCTOSPI1_BOOTROM"/>
+                    <InnerLoop bootDeviceName="OCTOSPI2">
+                        <Condition diagnostic="" expression="OCTOSPI2_BOOTLOADER_FSBLA"/>
+					    <Diagnostic></Diagnostic>
+						<NoteCondition diagnostic="" expression="OCTOSPI2_BOOTLOADER_FSBLA &amp; OCTOSPI1_BOOTROM "/>
+						<Note>OCTOSPI2 assignment in TF_A is not supported by OSTLinux </Note>
+                    </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+			<FaultyState name="BOOTROMOCTOSPI2OCTOSPI1Possible" scope="all" >
+                <OuterLoop bootDeviceName="OCTOSPI2">
+                    <Condition diagnostic="" expression="OCTOSPI2_BOOTLOADER_FSBLA"/>
+                    <InnerLoop bootDeviceName="OCTOSPI1">
+                        <Condition diagnostic="" expression="OCTOSPI1_BOOTROM &amp; OCTOSPI1_BOOTLOADER_FSBLM"/>
+					    <Diagnostic></Diagnostic>
+						<NoteCondition diagnostic="" expression="OCTOSPI1_BOOTROM &amp; OCTOSPI1_BOOTLOADER_FSBLM"/>
+						<Note>OCTOSPI1 assignment in MCUBoot is not supported by OSTLinux </Note>
+                    </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+			<FaultyState name="OnlyOneMemoryBootDeviceFSBL" scope="all" >
+                <OuterLoop bootDeviceType="all">
+                    <Condition diagnostic="" expression="($IpInstance_BOOTLOADER_FSBLA)"/>
+                    <InnerLoop bootDeviceType="all">
+					    <Condition diagnostic="" expression="(!($IpInstanceOuter=$IpInstanceInner)) &amp; ($IpInstanceInner_BOOTLOADER_FSBLA)"/>
+                        <Diagnostic>Faulty state detected for %s : Only one Memory Boot Device can be assigned to TF-A simultaneously.</Diagnostic>
+						 <NoteCondition diagnostic="" expression="OCTOSPI2_BOOTLOADER_FSBLA"/>
+						 <Note>OCTOSPI2 assignment in TF-A is not supported by OSTLinux </Note>
+					</InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+			<FaultyState name="FSBLMAssignmentForcesFSBLAAssignment" scope="M33TD" >
+                <OuterLoop bootDeviceType="secondary">
+                    <Condition diagnostic="" expression="($IpInstance_BOOTLOADER_FSBLM)"/>
+					<InnerLoop bootDeviceName="SDMMC1|SDMMC2|FMC">
+                        <Condition diagnostic="" expression="($IpInstanceOuter=$IpInstanceInner) &amp; (!($IpInstanceInner_BOOTLOADER_FSBLA))&amp; !OCTOSPI1_BOOTLOADER_FSBLM"/>
+                        <Diagnostic>Faulty state detected :($IpInstanceOuter) should be assigned to both TF-A and MCUBoot</Diagnostic>
+						<NoteCondition diagnostic="" expression="(SDMMC1_BOOTLOADER_FSBLA &amp; SDMMC1_BOOTROM &amp;SDMMC2_BOOTLOADER_FSBLM)|(SDMMC2_BOOTLOADER_FSBLA &amp; SDMMC2_BOOTROM &amp;SDMMC1_BOOTLOADER_FSBLM)"/>
+						<Note>Dual SDMMC bootDevice not supported</Note>
+                    </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+            <FaultyState name="FSBLMAssignmentConstraintsFSBLAAssignmentsInSecondaryBootDeviceList" scope="M33TD" >
+                <OuterLoop bootDeviceName="OCTOSPI1">
+                    <Condition diagnostic="" expression="OCTOSPI1_BOOTLOADER_FSBLA"/>
+                    <InnerLoop bootDeviceType="secondary">
+                        <Condition diagnostic="" expression="(OCTOSPI1_BOOTLOADER_FSBLA  &amp;$IpInstanceInner_BOOTLOADER_FSBLM &amp; !OCTOSPI1_BOOTLOADER_FSBLM)"/>
+                        <Diagnostic>Faulty state detected : (OCTOSPI1) is assigned to TF-A,then($IpInstanceInner) should not be assigned to MCUBoot</Diagnostic>
+						<NoteCondition diagnostic="" expression="OCTOSPI1_BOOTLOADER_FSBLA  &amp;$IpInstanceInner_BOOTLOADER_FSBLM"/>
+						<Note>(OCTOSPI1) is assigned to TF-A, should not be assigned to MCUBoot</Note>
+				   </InnerLoop>
+                </OuterLoop>
+            </FaultyState>
+		</FaultyStates>
+    </Family>
+</Families>

@@ -1,0 +1,2230 @@
+<Consumption xsi:noNamespaceSchemaLocation="../../../../../../../doc/V4/Development/Specifications/db/plugins/power/consumption.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Vdd Value="3.3">
+    <Temperature Value="25">
+      <Fetch FetchType="FLASH">
+        <Vcore Range="NA/extern/intern SMPS">
+          <Mode Name="STANDBY">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1500000</SecondaryConsumption>
+                  <ThirdConsumption>82000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="1"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1510000</SecondaryConsumption>
+                  <ThirdConsumption>82000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="2"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1400000</SecondaryConsumption>
+                  <ThirdConsumption>82000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="3"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1400000</SecondaryConsumption>
+                  <ThirdConsumption>82000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="4"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="NA">
+          <Mode Name="VBAT">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>41200</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="65"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>79900</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="66"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>45700</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="67"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>85600</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="68"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+    </Temperature>
+    <Temperature Value="85">
+      <Fetch FetchType="FLASH">
+        <Vcore Range="NA/extern/intern SMPS">
+          <Mode Name="STANDBY">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1780000</SecondaryConsumption>
+                  <ThirdConsumption>125000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="5"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1820000</SecondaryConsumption>
+                  <ThirdConsumption>125000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="6"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1780000</SecondaryConsumption>
+                  <ThirdConsumption>125000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="7"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1810000</SecondaryConsumption>
+                  <ThirdConsumption>125000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="8"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="NA">
+          <Mode Name="VBAT">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>41200</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="69"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>79900</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="70"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>45700</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="71"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>85600</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="72"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+    </Temperature>
+    <Temperature Value="105">
+      <Fetch FetchType="FLASH">
+        <Vcore Range="NA/extern/intern SMPS">
+          <Mode Name="STANDBY">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1990000</SecondaryConsumption>
+                  <ThirdConsumption>137000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="9"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>2070000</SecondaryConsumption>
+                  <ThirdConsumption>137000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="10"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>1990000</SecondaryConsumption>
+                  <ThirdConsumption>137000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="11"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>2070000</SecondaryConsumption>
+                  <ThirdConsumption>137000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="12"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="NA">
+          <Mode Name="VBAT">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>62700</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="73"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>147000</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="74"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>66500</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="75"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>146000</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="76"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+    </Temperature>
+    <Temperature Value="125">
+      <Fetch FetchType="FLASH">
+        <Vcore Range="NA/extern/intern SMPS">
+          <Mode Name="STANDBY">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>2330000</SecondaryConsumption>
+                  <ThirdConsumption>147000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="13"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>2460000</SecondaryConsumption>
+                  <ThirdConsumption>147000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="14"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>2320000</SecondaryConsumption>
+                  <ThirdConsumption>147000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="15"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>2460000</SecondaryConsumption>
+                  <ThirdConsumption>147000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="16"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="NA">
+          <Mode Name="VBAT">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>90000</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="77"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>232000</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="78"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>92100</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="79"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>233000</Consumption>
+                  <SecondaryConsumption>1</SecondaryConsumption>
+                  <ThirdConsumption>1</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="80"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+    </Temperature>
+  </Vdd>
+  <Vdd Value="1.8">
+    <Temperature Value="25">
+      <Fetch FetchType="FLASH">
+        <Vcore Range="NA/extern/intern SMPS">
+          <Mode Name="STANDBY">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>47000</SecondaryConsumption>
+                  <ThirdConsumption>82000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="17"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>49000</SecondaryConsumption>
+                  <ThirdConsumption>82000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="18"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>48000</SecondaryConsumption>
+                  <ThirdConsumption>82000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="19"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>49000</SecondaryConsumption>
+                  <ThirdConsumption>82000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="20"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="SVOS_HIGH/extern SMPS">
+          <Mode Name="STOP">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>27000000</Consumption>
+                  <SecondaryConsumption>275000</SecondaryConsumption>
+                  <ThirdConsumption>42000</ThirdConsumption>
+                  <FourthConsumption>65000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="33"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="SVOS_HIGH/intern SMPS">
+          <Mode Name="STOP">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>12800000</Consumption>
+                  <SecondaryConsumption>273000</SecondaryConsumption>
+                  <ThirdConsumption>56000</ThirdConsumption>
+                  <FourthConsumption>358000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="37"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="SVOS_LOW/intern SMPS">
+          <Mode Name="STOP">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>12300000</Consumption>
+                  <SecondaryConsumption>273000</SecondaryConsumption>
+                  <ThirdConsumption>42000</ThirdConsumption>
+                  <FourthConsumption>362000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="38"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/600/800">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>51330000</Consumption>
+                  <SecondaryConsumption>287000</SecondaryConsumption>
+                  <ThirdConsumption>264000</ThirdConsumption>
+                  <FourthConsumption>2140000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="41"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>143260000</Consumption>
+                  <SecondaryConsumption>287000</SecondaryConsumption>
+                  <ThirdConsumption>475000</ThirdConsumption>
+                  <FourthConsumption>2140000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="43"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/800/1000">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>43870000</Consumption>
+                  <SecondaryConsumption>287000</SecondaryConsumption>
+                  <ThirdConsumption>264000</ThirdConsumption>
+                  <FourthConsumption>4500000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="42"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800/1000 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>124740000</Consumption>
+                  <SecondaryConsumption>287000</SecondaryConsumption>
+                  <ThirdConsumption>475000</ThirdConsumption>
+                  <FourthConsumption>4530000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="44"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/intern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/600/800">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>76440000</Consumption>
+                  <SecondaryConsumption>287000</SecondaryConsumption>
+                  <ThirdConsumption>250000</ThirdConsumption>
+                  <FourthConsumption>2560000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="57"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>214930000</Consumption>
+                  <SecondaryConsumption>287000</SecondaryConsumption>
+                  <ThirdConsumption>450000</ThirdConsumption>
+                  <FourthConsumption>2670000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="59"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/intern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/800/1000">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>63950000</Consumption>
+                  <SecondaryConsumption>287000</SecondaryConsumption>
+                  <ThirdConsumption>250000</ThirdConsumption>
+                  <FourthConsumption>4800000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="58"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800/1000 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>184760000</Consumption>
+                  <SecondaryConsumption>287000</SecondaryConsumption>
+                  <ThirdConsumption>450000</ThirdConsumption>
+                  <FourthConsumption>4920000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="60"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="ITCM">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>115468500</Consumption>
+                  <SecondaryConsumption>297198</SecondaryConsumption>
+                  <ThirdConsumption>501798</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="85"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>210703500</Consumption>
+                  <SecondaryConsumption>296868</SecondaryConsumption>
+                  <ThirdConsumption>501336</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="87"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>113001000</Consumption>
+                  <SecondaryConsumption>323059</SecondaryConsumption>
+                  <ThirdConsumption>5181000</ThirdConsumption>
+                  <FourthConsumption>2211000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="105"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>207396000</Consumption>
+                  <SecondaryConsumption>322476</SecondaryConsumption>
+                  <ThirdConsumption>5401000</ThirdConsumption>
+                  <FourthConsumption>2211000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="107"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>92557500</Consumption>
+                  <SecondaryConsumption>297143</SecondaryConsumption>
+                  <ThirdConsumption>501930</ThirdConsumption>
+                  <FourthConsumption>4730000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="86"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>176001000</Consumption>
+                  <SecondaryConsumption>297077</SecondaryConsumption>
+                  <ThirdConsumption>501435</ThirdConsumption>
+                  <FourthConsumption>4741000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="88"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>88011000</Consumption>
+                  <SecondaryConsumption>322806</SecondaryConsumption>
+                  <ThirdConsumption>5181000</ThirdConsumption>
+                  <FourthConsumption>1540000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="106"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>170604000</Consumption>
+                  <SecondaryConsumption>322047</SecondaryConsumption>
+                  <ThirdConsumption>5401000</ThirdConsumption>
+                  <FourthConsumption>1540000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="108"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="AXI-SRAM2/CACHE-ON">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>117915000</Consumption>
+                  <SecondaryConsumption>297000</SecondaryConsumption>
+                  <ThirdConsumption>501952</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="125"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>212163000</Consumption>
+                  <SecondaryConsumption>297077</SecondaryConsumption>
+                  <ThirdConsumption>501479</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="127"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>94468500</Consumption>
+                  <SecondaryConsumption>297165</SecondaryConsumption>
+                  <ThirdConsumption>501974</ThirdConsumption>
+                  <FourthConsumption>4730000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="126"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>177061500</Consumption>
+                  <SecondaryConsumption>297055</SecondaryConsumption>
+                  <ThirdConsumption>501446</ThirdConsumption>
+                  <FourthConsumption>4752000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="128"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="AXI-SRAM2">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>99330000</Consumption>
+                  <SecondaryConsumption>322861</SecondaryConsumption>
+                  <ThirdConsumption>5181000</ThirdConsumption>
+                  <FourthConsumption>2211000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="145"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>192769500</Consumption>
+                  <SecondaryConsumption>322146</SecondaryConsumption>
+                  <ThirdConsumption>5401000</ThirdConsumption>
+                  <FourthConsumption>2211000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="147"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>80902500</Consumption>
+                  <SecondaryConsumption>322850</SecondaryConsumption>
+                  <ThirdConsumption>5181000</ThirdConsumption>
+                  <FourthConsumption>1540000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="146"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>162970500</Consumption>
+                  <SecondaryConsumption>322212</SecondaryConsumption>
+                  <ThirdConsumption>5401000</ThirdConsumption>
+                  <FourthConsumption>1540000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="148"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+    </Temperature>
+    <Temperature Value="85">
+      <Fetch FetchType="FLASH">
+        <Vcore Range="NA/extern/intern SMPS">
+          <Mode Name="STANDBY">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>315000</SecondaryConsumption>
+                  <ThirdConsumption>125000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="21"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>349000</SecondaryConsumption>
+                  <ThirdConsumption>125000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="22"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>315000</SecondaryConsumption>
+                  <ThirdConsumption>125000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="23"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>349000</SecondaryConsumption>
+                  <ThirdConsumption>125000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="24"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="SVOS_HIGH/extern SMPS">
+          <Mode Name="STOP">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>191000000</Consumption>
+                  <SecondaryConsumption>306000</SecondaryConsumption>
+                  <ThirdConsumption>57000</ThirdConsumption>
+                  <FourthConsumption>83000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="34"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/600/800">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>284510000</Consumption>
+                  <SecondaryConsumption>312000</SecondaryConsumption>
+                  <ThirdConsumption>279000</ThirdConsumption>
+                  <FourthConsumption>2140000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="45"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>382330000</Consumption>
+                  <SecondaryConsumption>311000</SecondaryConsumption>
+                  <ThirdConsumption>503000</ThirdConsumption>
+                  <FourthConsumption>2150000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="47"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/800/1000">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>265410000</Consumption>
+                  <SecondaryConsumption>312000</SecondaryConsumption>
+                  <ThirdConsumption>279000</ThirdConsumption>
+                  <FourthConsumption>4610000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="46"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800/1000 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>349220000</Consumption>
+                  <SecondaryConsumption>312000</SecondaryConsumption>
+                  <ThirdConsumption>503000</ThirdConsumption>
+                  <FourthConsumption>4610000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="48"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="ITCM">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>327274500</Consumption>
+                  <SecondaryConsumption>326568</SecondaryConsumption>
+                  <ThirdConsumption>4862000</ThirdConsumption>
+                  <FourthConsumption>2233000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="89"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>423223500</Consumption>
+                  <SecondaryConsumption>325853</SecondaryConsumption>
+                  <ThirdConsumption>5082000</ThirdConsumption>
+                  <FourthConsumption>2233000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="91"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>325773000</Consumption>
+                  <SecondaryConsumption>352517</SecondaryConsumption>
+                  <ThirdConsumption>4906000</ThirdConsumption>
+                  <FourthConsumption>2222000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="109"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>420462000</Consumption>
+                  <SecondaryConsumption>351384</SecondaryConsumption>
+                  <ThirdConsumption>5126000</ThirdConsumption>
+                  <FourthConsumption>2222000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="111"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>293296500</Consumption>
+                  <SecondaryConsumption>326414</SecondaryConsumption>
+                  <ThirdConsumption>4851000</ThirdConsumption>
+                  <FourthConsumption>1551000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="90"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>378052500</Consumption>
+                  <SecondaryConsumption>326073</SecondaryConsumption>
+                  <ThirdConsumption>5082000</ThirdConsumption>
+                  <FourthConsumption>1551000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="92"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>290020500</Consumption>
+                  <SecondaryConsumption>352660</SecondaryConsumption>
+                  <ThirdConsumption>4906000</ThirdConsumption>
+                  <FourthConsumption>1529000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="110"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>373348500</Consumption>
+                  <SecondaryConsumption>351725</SecondaryConsumption>
+                  <ThirdConsumption>5137000</ThirdConsumption>
+                  <FourthConsumption>1529000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="112"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="AXI-SRAM2/CACHE-ON">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>329595000</Consumption>
+                  <SecondaryConsumption>376112</SecondaryConsumption>
+                  <ThirdConsumption>4818000</ThirdConsumption>
+                  <FourthConsumption>2233000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="129"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>424567500</Consumption>
+                  <SecondaryConsumption>376134</SecondaryConsumption>
+                  <ThirdConsumption>5049000</ThirdConsumption>
+                  <FourthConsumption>2233000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="131"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>295249500</Consumption>
+                  <SecondaryConsumption>376992</SecondaryConsumption>
+                  <ThirdConsumption>4818000</ThirdConsumption>
+                  <FourthConsumption>1529000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="130"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>378703500</Consumption>
+                  <SecondaryConsumption>376266</SecondaryConsumption>
+                  <ThirdConsumption>5049000</ThirdConsumption>
+                  <FourthConsumption>1529000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="132"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="AXI-SRAM2">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>311430000</Consumption>
+                  <SecondaryConsumption>420926</SecondaryConsumption>
+                  <ThirdConsumption>4719000</ThirdConsumption>
+                  <FourthConsumption>2255000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="149"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>404869500</Consumption>
+                  <SecondaryConsumption>419419</SecondaryConsumption>
+                  <ThirdConsumption>4950000</ThirdConsumption>
+                  <FourthConsumption>2255000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="151"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>282891000</Consumption>
+                  <SecondaryConsumption>424171</SecondaryConsumption>
+                  <ThirdConsumption>4719000</ThirdConsumption>
+                  <FourthConsumption>1551000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="150"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>365484000</Consumption>
+                  <SecondaryConsumption>422268</SecondaryConsumption>
+                  <ThirdConsumption>4950000</ThirdConsumption>
+                  <FourthConsumption>1551000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="152"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+    </Temperature>
+    <Temperature Value="105">
+      <Fetch FetchType="FLASH">
+        <Vcore Range="NA/extern/intern SMPS">
+          <Mode Name="STANDBY">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>519000</SecondaryConsumption>
+                  <ThirdConsumption>137000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="25"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>588000</SecondaryConsumption>
+                  <ThirdConsumption>137000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="26"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>518000</SecondaryConsumption>
+                  <ThirdConsumption>137000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="27"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>587000</SecondaryConsumption>
+                  <ThirdConsumption>137000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="28"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="SVOS_HIGH/extern SMPS">
+          <Mode Name="STOP">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>314000000</Consumption>
+                  <SecondaryConsumption>329000</SecondaryConsumption>
+                  <ThirdConsumption>64000</ThirdConsumption>
+                  <FourthConsumption>95000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="35"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/600/800">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>437820000</Consumption>
+                  <SecondaryConsumption>334000</SecondaryConsumption>
+                  <ThirdConsumption>287000</ThirdConsumption>
+                  <FourthConsumption>2150000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="49"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>542820000</Consumption>
+                  <SecondaryConsumption>335000</SecondaryConsumption>
+                  <ThirdConsumption>514000</ThirdConsumption>
+                  <FourthConsumption>2150000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="51"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/800/1000">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>413510000</Consumption>
+                  <SecondaryConsumption>335000</SecondaryConsumption>
+                  <ThirdConsumption>288000</ThirdConsumption>
+                  <FourthConsumption>4640000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="50"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800/1000 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>500080000</Consumption>
+                  <SecondaryConsumption>335000</SecondaryConsumption>
+                  <ThirdConsumption>514000</ThirdConsumption>
+                  <FourthConsumption>4650000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="52"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="ITCM">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>484113000</Consumption>
+                  <SecondaryConsumption>300564</SecondaryConsumption>
+                  <ThirdConsumption>497684</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="93"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>586141500</Consumption>
+                  <SecondaryConsumption>300476</SecondaryConsumption>
+                  <ThirdConsumption>497497</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="95"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>484029000</Consumption>
+                  <SecondaryConsumption>330000</SecondaryConsumption>
+                  <ThirdConsumption>527230</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="113"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>583264500</Consumption>
+                  <SecondaryConsumption>325369</SecondaryConsumption>
+                  <ThirdConsumption>526691</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="115"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>440296500</Consumption>
+                  <SecondaryConsumption>300575</SecondaryConsumption>
+                  <ThirdConsumption>497618</ThirdConsumption>
+                  <FourthConsumption>4730000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="94"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>530008500</Consumption>
+                  <SecondaryConsumption>300432</SecondaryConsumption>
+                  <ThirdConsumption>497497</ThirdConsumption>
+                  <FourthConsumption>4741000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="96"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>438112500</Consumption>
+                  <SecondaryConsumption>327041</SecondaryConsumption>
+                  <ThirdConsumption>527527</ThirdConsumption>
+                  <FourthConsumption>4829000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="114"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>525871500</Consumption>
+                  <SecondaryConsumption>326161</SecondaryConsumption>
+                  <ThirdConsumption>527120</ThirdConsumption>
+                  <FourthConsumption>4829000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="116"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="AXI-SRAM2/CACHE-ON">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>487095000</Consumption>
+                  <SecondaryConsumption>352000</SecondaryConsumption>
+                  <ThirdConsumption>537867</ThirdConsumption>
+                  <FourthConsumption>2255000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="133"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>587727000</Consumption>
+                  <SecondaryConsumption>350130</SecondaryConsumption>
+                  <ThirdConsumption>537405</ThirdConsumption>
+                  <FourthConsumption>2255000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="135"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>442837500</Consumption>
+                  <SecondaryConsumption>350944</SecondaryConsumption>
+                  <ThirdConsumption>538406</ThirdConsumption>
+                  <FourthConsumption>4862000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="134"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>529966500</Consumption>
+                  <SecondaryConsumption>350053</SecondaryConsumption>
+                  <ThirdConsumption>537900</ThirdConsumption>
+                  <FourthConsumption>4873000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="136"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="AXI-SRAM2">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>468541500</Consumption>
+                  <SecondaryConsumption>396000</SecondaryConsumption>
+                  <ThirdConsumption>553267</ThirdConsumption>
+                  <FourthConsumption>2266000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="153"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>567178500</Consumption>
+                  <SecondaryConsumption>394427</SecondaryConsumption>
+                  <ThirdConsumption>552387</ThirdConsumption>
+                  <FourthConsumption>2266000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="155"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>430867500</Consumption>
+                  <SecondaryConsumption>397617</SecondaryConsumption>
+                  <ThirdConsumption>553729</ThirdConsumption>
+                  <FourthConsumption>4895000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="154"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>517482000</Consumption>
+                  <SecondaryConsumption>395802</SecondaryConsumption>
+                  <ThirdConsumption>552871</ThirdConsumption>
+                  <FourthConsumption>4917000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="156"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+    </Temperature>
+    <Temperature Value="125">
+      <Fetch FetchType="FLASH">
+        <Vcore Range="NA/extern/intern SMPS">
+          <Mode Name="STANDBY">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>825000</SecondaryConsumption>
+                  <ThirdConsumption>147000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="29"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="ALL CLOCKS OFF RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>954000</SecondaryConsumption>
+                  <ThirdConsumption>147000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="30"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>824000</SecondaryConsumption>
+                  <ThirdConsumption>147000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="31"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="LSE RTC_ON RETRAM">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1</Consumption>
+                  <SecondaryConsumption>954000</SecondaryConsumption>
+                  <ThirdConsumption>147000</ThirdConsumption>
+                  <FourthConsumption>1</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="32"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="SVOS_HIGH/extern SMPS">
+          <Mode Name="STOP">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>524000000</Consumption>
+                  <SecondaryConsumption>373000</SecondaryConsumption>
+                  <ThirdConsumption>76000</ThirdConsumption>
+                  <FourthConsumption>114000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="36"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="SVOS_HIGH/intern SMPS">
+          <Mode Name="STOP">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1178000000</Consumption>
+                  <SecondaryConsumption>362000</SecondaryConsumption>
+                  <ThirdConsumption>88000</ThirdConsumption>
+                  <FourthConsumption>1022000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="39"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="SVOS_LOW/intern SMPS">
+          <Mode Name="STOP">
+            <Oscillator Value="ALL CLOCKS OFF">
+              <Foscillator Value="0">
+                <FCPU Value="0">
+                  <Consumption>1197000000</Consumption>
+                  <SecondaryConsumption>362000</SecondaryConsumption>
+                  <ThirdConsumption>86000</ThirdConsumption>
+                  <FourthConsumption>1050000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="40"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/600/800">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>713930000</Consumption>
+                  <SecondaryConsumption>378000</SecondaryConsumption>
+                  <ThirdConsumption>300000</ThirdConsumption>
+                  <FourthConsumption>2150000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="53"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>809400000</Consumption>
+                  <SecondaryConsumption>376000</SecondaryConsumption>
+                  <ThirdConsumption>528000</ThirdConsumption>
+                  <FourthConsumption>2160000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="55"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/800/1000">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>677450000</Consumption>
+                  <SecondaryConsumption>380000</SecondaryConsumption>
+                  <ThirdConsumption>301000</ThirdConsumption>
+                  <FourthConsumption>4670000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="54"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800/1000 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>760010000</Consumption>
+                  <SecondaryConsumption>378000</SecondaryConsumption>
+                  <ThirdConsumption>528000</ThirdConsumption>
+                  <FourthConsumption>4690000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="56"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/intern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/600/800">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1595615000</Consumption>
+                  <SecondaryConsumption>378000</SecondaryConsumption>
+                  <ThirdConsumption>304000</ThirdConsumption>
+                  <FourthConsumption>2910000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="61"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1749328500</Consumption>
+                  <SecondaryConsumption>376000</SecondaryConsumption>
+                  <ThirdConsumption>525000</ThirdConsumption>
+                  <FourthConsumption>2930000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="63"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/intern SMPS">
+          <Mode Name="SLEEP">
+            <Oscillator Value="HSI PLL:400/800/1000">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1477325200</Consumption>
+                  <SecondaryConsumption>380000</SecondaryConsumption>
+                  <ThirdConsumption>309000</ThirdConsumption>
+                  <FourthConsumption>5410000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="62"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800/1000 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1606806400</Consumption>
+                  <SecondaryConsumption>378000</SecondaryConsumption>
+                  <ThirdConsumption>525000</ThirdConsumption>
+                  <FourthConsumption>5420000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="64"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="ITCM">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>756220500</Consumption>
+                  <SecondaryConsumption>325985</SecondaryConsumption>
+                  <ThirdConsumption>4851000</ThirdConsumption>
+                  <FourthConsumption>2233000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="97"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>855277500</Consumption>
+                  <SecondaryConsumption>326777</SecondaryConsumption>
+                  <ThirdConsumption>5082000</ThirdConsumption>
+                  <FourthConsumption>2244000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="99"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>757060500</Consumption>
+                  <SecondaryConsumption>352132</SecondaryConsumption>
+                  <ThirdConsumption>4906000</ThirdConsumption>
+                  <FourthConsumption>2222000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="117"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>852978000</Consumption>
+                  <SecondaryConsumption>351637</SecondaryConsumption>
+                  <ThirdConsumption>5126000</ThirdConsumption>
+                  <FourthConsumption>2222000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="119"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>708151500</Consumption>
+                  <SecondaryConsumption>325941</SecondaryConsumption>
+                  <ThirdConsumption>4851000</ThirdConsumption>
+                  <FourthConsumption>1551000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="98"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>789411000</Consumption>
+                  <SecondaryConsumption>326139</SecondaryConsumption>
+                  <ThirdConsumption>5082000</ThirdConsumption>
+                  <FourthConsumption>1551000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="100"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>706146000</Consumption>
+                  <SecondaryConsumption>353089</SecondaryConsumption>
+                  <ThirdConsumption>4906000</ThirdConsumption>
+                  <FourthConsumption>1529000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="118"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>788844000</Consumption>
+                  <SecondaryConsumption>352341</SecondaryConsumption>
+                  <ThirdConsumption>5137000</ThirdConsumption>
+                  <FourthConsumption>1529000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="120"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/intern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1704675000</Consumption>
+                  <SecondaryConsumption>395032</SecondaryConsumption>
+                  <ThirdConsumption>561000</ThirdConsumption>
+                  <FourthConsumption>3124000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="165"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1859424000</Consumption>
+                  <SecondaryConsumption>393536</SecondaryConsumption>
+                  <ThirdConsumption>561000</ThirdConsumption>
+                  <FourthConsumption>3124000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="167"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1302945000</Consumption>
+                  <SecondaryConsumption>420926</SecondaryConsumption>
+                  <ThirdConsumption>4642000</ThirdConsumption>
+                  <FourthConsumption>3091000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="173"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1480353000</Consumption>
+                  <SecondaryConsumption>419419</SecondaryConsumption>
+                  <ThirdConsumption>4620000</ThirdConsumption>
+                  <FourthConsumption>4521000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="175"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/intern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1559365500</Consumption>
+                  <SecondaryConsumption>397298</SecondaryConsumption>
+                  <ThirdConsumption>561000</ThirdConsumption>
+                  <FourthConsumption>5786000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="166"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1695036000</Consumption>
+                  <SecondaryConsumption>395615</SecondaryConsumption>
+                  <ThirdConsumption>561000</ThirdConsumption>
+                  <FourthConsumption>5786000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="168"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1285126500</Consumption>
+                  <SecondaryConsumption>424171</SecondaryConsumption>
+                  <ThirdConsumption>4609000</ThirdConsumption>
+                  <FourthConsumption>2387000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="174"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSE PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1326024000</Consumption>
+                  <SecondaryConsumption>422268</SecondaryConsumption>
+                  <ThirdConsumption>4884000</ThirdConsumption>
+                  <FourthConsumption>2387000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="176"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="AXI-SRAM2/CACHE-ON">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>762090000</Consumption>
+                  <SecondaryConsumption>376013</SecondaryConsumption>
+                  <ThirdConsumption>4818000</ThirdConsumption>
+                  <FourthConsumption>2233000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="137"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>855907500</Consumption>
+                  <SecondaryConsumption>376211</SecondaryConsumption>
+                  <ThirdConsumption>5049000</ThirdConsumption>
+                  <FourthConsumption>2233000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="139"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>708687000</Consumption>
+                  <SecondaryConsumption>376761</SecondaryConsumption>
+                  <ThirdConsumption>4818000</ThirdConsumption>
+                  <FourthConsumption>1529000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="138"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>790870500</Consumption>
+                  <SecondaryConsumption>376475</SecondaryConsumption>
+                  <ThirdConsumption>5049000</ThirdConsumption>
+                  <FourthConsumption>1529000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="140"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/intern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1704402000</Consumption>
+                  <SecondaryConsumption>396000</SecondaryConsumption>
+                  <ThirdConsumption>561000</ThirdConsumption>
+                  <FourthConsumption>3113000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="181"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1857576000</Consumption>
+                  <SecondaryConsumption>394427</SecondaryConsumption>
+                  <ThirdConsumption>561000</ThirdConsumption>
+                  <FourthConsumption>3124000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="183"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/intern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1560310500</Consumption>
+                  <SecondaryConsumption>397617</SecondaryConsumption>
+                  <ThirdConsumption>561000</ThirdConsumption>
+                  <FourthConsumption>5786000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="182"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1693534500</Consumption>
+                  <SecondaryConsumption>395802</SecondaryConsumption>
+                  <ThirdConsumption>561000</ThirdConsumption>
+                  <FourthConsumption>5786000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="184"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+      <Fetch FetchType="AXI-SRAM2">
+        <Vcore Range="VOS_HIGH/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>743620500</Consumption>
+                  <SecondaryConsumption>421498</SecondaryConsumption>
+                  <ThirdConsumption>4719000</ThirdConsumption>
+                  <FourthConsumption>2255000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="157"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>836115000</Consumption>
+                  <SecondaryConsumption>420585</SecondaryConsumption>
+                  <ThirdConsumption>4950000</ThirdConsumption>
+                  <FourthConsumption>2255000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="159"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/extern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>697431000</Consumption>
+                  <SecondaryConsumption>423544</SecondaryConsumption>
+                  <ThirdConsumption>4719000</ThirdConsumption>
+                  <FourthConsumption>1551000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="158"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>778060500</Consumption>
+                  <SecondaryConsumption>421883</SecondaryConsumption>
+                  <ThirdConsumption>4950000</ThirdConsumption>
+                  <FourthConsumption>1551000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="160"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_HIGH/intern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/800">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1272642000</Consumption>
+                  <SecondaryConsumption>421498</SecondaryConsumption>
+                  <ThirdConsumption>4653000</ThirdConsumption>
+                  <FourthConsumption>3091000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="189"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/800 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="800">
+                  <Consumption>1428808500</Consumption>
+                  <SecondaryConsumption>420585</SecondaryConsumption>
+                  <ThirdConsumption>4510000</ThirdConsumption>
+                  <FourthConsumption>5401000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="191"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+        <Vcore Range="VOS_LOW/intern SMPS">
+          <Mode Name="RUN">
+            <Oscillator Value="HSI PLL:400/600">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1149729000</Consumption>
+                  <SecondaryConsumption>423544</SecondaryConsumption>
+                  <ThirdConsumption>4642000</ThirdConsumption>
+                  <FourthConsumption>2387000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="190"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+            <Oscillator Value="HSI PLL:400/600 ALL_IPs_ON">
+              <Foscillator Value="400">
+                <FCPU Value="600">
+                  <Consumption>1028013000</Consumption>
+                  <SecondaryConsumption>421883</SecondaryConsumption>
+                  <ThirdConsumption>4862000</ThirdConsumption>
+                  <FourthConsumption>2376000</FourthConsumption>
+                  <Category Name="DatasheetAndPCC"/>
+                  <Key Value="192"/>
+                </FCPU>
+              </Foscillator>
+            </Oscillator>
+          </Mode>
+        </Vcore>
+      </Fetch>
+    </Temperature>
+  </Vdd>
+</Consumption>

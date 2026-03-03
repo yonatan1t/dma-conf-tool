@@ -1,0 +1,75 @@
+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
+/*
+ * Copyright (C) 2025, STMicroelectronics - All Rights Reserved
+ * Author: STM32CubeMX code generation for STMicroelectronics.
+ */
+
+/* For more information on Device Tree configuration, please refer to
+ * https://wiki.st.com/stm32mpu/wiki/Category:Device_tree_configuration
+ */
+
+/ {
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		/* USER CODE BEGIN reserved-memory */
+      	 	bl2_code:bl2-code@e040000{
+  			compatible = "reserved-memory";
+  			reg = <0x0 0xe040000 0x0 0x16800>;
+  			#memory-region-cells = <0>;
+  		};
+
+  		bl2_data:bl2-data@e056800{
+  			compatible = "reserved-memory";
+  			reg = <0x0 0xe056800 0x0 0xd000>;
+  			#memory-region-cells = <0>;
+  		};
+
+  		ddr_fw_buffer:ddr-fw-buffer@e065000{
+  			compatible = "reserved-memory";
+  			reg = <0x0 0xe065000 0x0 0xa000>;
+  			#memory-region-cells = <0>;
+  		};
+		/* Internal RAM reserved memory declaration */
+		bsec_mirror: bsec-mirror@e060000 {
+			compatible = "reserved-memory";
+			reg = <0x0 0xe060000 0x0 0x1000>;
+			#memory-region-cells = <0>;
+		};
+
+		tfm_shared_data: tfm-shared-data@e06f000 {
+			compatible = "reserved-memory";
+			reg = <0x0 0xe06f000 0x0 0x1000>;
+			#memory-region-cells = <0>;
+		};
+
+		/* Octo Memory Manager reserved memory declaration */
+		/* DDR reserved memory declaration */
+		tfm_code: tfm-code@80000000 {
+			compatible = "reserved-memory";
+			reg = <0x0 0x80000000 0x0 0x80000>;
+			#memory-region-cells = <0>;
+		};
+
+		cm33_cube_fw: cm33-cube-fw@80080000 {
+			compatible = "reserved-memory";
+			reg = <0x0 0x80080000 0x0 0x80000>;
+			#memory-region-cells = <0>;
+		};
+
+		tfm_data: tfm-data@80100000 {
+			compatible = "reserved-memory";
+			reg = <0x0 0x80100000 0x0 0x100000>;
+			#memory-region-cells = <0>;
+		};
+
+		cm33_cube_data: cm33-cube-data@80200000 {
+			compatible = "reserved-memory";
+			reg = <0x0 0x80200000 0x0 0x800000>;
+			#memory-region-cells = <0>;
+		};
+		/* USER CODE END reserved-memory */
+	};
+};

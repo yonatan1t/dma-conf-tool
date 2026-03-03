@@ -1,0 +1,130 @@
+[#ftl]
+/* USER CODE BEGIN Header */
+/**
+ ******************************************************************************
+ * @file    app_thread.h
+ * @author  MCD Application Team
+ * @version
+ * @date
+ * @brief   Header file for thread application.
+  ******************************************************************************
+[@common.optinclude name=mxTmpFolder+"/license.tmp"/][#--include License text --]
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+[#assign myHash = {}]
+[#list SWIPdatas as SWIP]
+    [#if SWIP.defines??]
+        [#list SWIP.defines as definition]
+            [#assign myHash = {definition.name:definition.value} + myHash]
+            [#if (definition.name == "THREAD_APPLICATION") ]
+                [#assign THREAD_APPLICATION = definition.value]
+            [/#if]
+        [/#list]
+    [/#if]
+[/#list]
+[#--
+Key & Value:
+[#list myHash?keys as key]
+Key: ${key}; Value: ${myHash[key]}
+[/#list]
+--]
+
+/* Define to prevent recursive inclusion -------------------------------------*/
+#ifndef APP_THREAD_H
+#define APP_THREAD_H
+
+/* Includes ------------------------------------------------------------------*/
+
+/* Exported types ------------------------------------------------------------*/
+/*
+ *  List of all errors tracked by the Thread application.
+ *  Some of these errors may be fatal or just warnings
+ */
+typedef enum
+{
+  ERR_THREAD_SET_STATE_CB,
+  ERR_THREAD_SET_CHANNEL,
+  ERR_THREAD_SET_PANID,
+  ERR_THREAD_SET_THRESHOLD,
+  ERR_THREAD_SET_MASTERKEY,
+  ERR_THREAD_IPV6_ENABLE,
+  ERR_THREAD_START,
+  ERR_THREAD_ERASE_PERSISTENT_INFO,
+  ERR_THREAD_SET_NETWORK_KEY,
+  ERR_THREAD_LINK_MODE,
+  ERR_THREAD_POLL_MODE,
+  /* USER CODE BEGIN ERROR_APPLI_ENUM */
+
+  /* USER CODE END ERROR_APPLI_ENUM */
+  ERR_THREAD_CHECK_WIRELESS
+} ErrAppliIdEnum_t;
+
+/* USER CODE BEGIN ET */
+
+/* USER CODE END ET */
+
+/* Exported constants --------------------------------------------------------*/
+#define APP_READ32_REG(base_addr)           (*(volatile uint32_t *)(base_addr))
+#define APP_WRITE32_REG(base_addr, data)    (*(volatile uint32_t *)(base_addr) = (data))
+[#if (myHash["FREERTOS_STATUS"]?number == 1) && (myHash["WPAN_RTOS_MODEL"] == "SINGLE_TASK") ]
+
+#define OT_API_CALL(...) do                                                                  \
+                         {                                                                   \
+                           osMutexAcquire(LinkLayerMutex, osWaitForever);                       \
+                           __VA_ARGS__;                                                      \
+                           osMutexRelease(LinkLayerMutex);                                      \
+                           osThreadFlagsSet(WpanTaskHandle, 1U << CFG_RTOS_FLAG_OT_Tasklet); \
+                         } while(0)
+[/#if]
+
+/* ipv6-addressing defines        */
+/* Key Point: A major difference between FTDs and MTDs are that FTDs subscribe to the ff03::2 multicast address.
+ * MTDs do not. */
+#define MULTICAST_FTD_MED             "ff03::1"
+#define MULTICAST_FTD_BORDER_ROUTER   "ff03::2"
+
+/* USER CODE BEGIN EC */
+
+/* USER CODE END EC */
+
+/* Exported functions prototypes ---------------------------------------------*/
+void Thread_Init(void);
+[#if myHash["SEQUENCER_STATUS"]?number == 1 ]
+void ProcessLinkLayer(void);
+void ProcessTasklets(void);
+void ProcessAlarm(void);
+[#if (THREAD_APPLICATION != "RCP")]
+void ProcessUsAlarm(void);
+[/#if]
+void ProcessOpenThreadTasklets(void);
+[#if (THREAD_APPLICATION == "RCP")]
+void ProcessRcpSpinel(void);
+[/#if]
+[/#if]
+
+void APP_THREAD_Init(void);
+void APP_THREAD_ScheduleUART(void);
+void APP_THREAD_Error(uint32_t ErrId, uint32_t ErrCode);
+[#if (myHash["FREERTOS_STATUS"]?number == 1) && (myHash["WPAN_RTOS_MODEL"] == "SINGLE_TASK") ]
+void APP_THREAD_ProcessAlarm(void *argument);
+void APP_THREAD_ProcessUsAlarm(void *argument);
+void APP_THREAD_ProcessOpenThreadTasklets(void *argument);
+#if (OT_CLI_USE == 1)
+void APP_THREAD_ProcessUart(void *argument);
+#endif
+[/#if]
+
+/* USER CODE BEGIN EFP */
+
+/* USER CODE BEGIN EFP */
+
+
+
+
+
+
+
+
+
+#endif /* APP_THREAD_H */

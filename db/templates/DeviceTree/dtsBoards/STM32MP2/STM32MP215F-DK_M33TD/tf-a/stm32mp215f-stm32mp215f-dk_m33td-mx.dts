@@ -1,0 +1,145 @@
+/dts-v1/;
+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
+#include <dt-bindings/clock/stm32mp21-clksrc.h>
+#include "stm32mp21-mx.dtsi"
+#include "stm32mp215.dtsi"
+#include "stm32mp21xf.dtsi"
+#include "stm32mp215f-board_215f-dk_m33td-mx-rcc.dtsi"
+#include "stm32mp25-ddr.dtsi"
+
+/* USER CODE BEGIN includes */
+/* USER CODE END includes */
+
+/{
+	model = "STMicroelectronics STM32MP215F-DK STM32CubeMX board - openstlinux-6.6-yocto-scarthgap-mpu-v25.01.03";
+	compatible = "st,stm32mp215f-board_215f-dk_m33td-mx", "st,stm32mp215f-dk", "st,stm32mp215";
+
+	/* USER CODE BEGIN root */
+
+	aliases{
+		serial0 = &usart2;
+	};
+
+	chosen{
+		stdout-path = "serial0:115200n8";
+	};
+
+	cpu0_opp_table:cpu0-opp-table{
+		compatible = "operating-points-v2";
+
+		opp-1200000000{
+			opp-hz = /bits/ 64 <1200000000>;
+			opp-microvolt = <800000>;
+			opp-supported-hw = <0x3>;
+			st,opp-default;
+			st,pll = <&pll1_cfg_1200MHz>;
+		};
+
+		opp-1500000000{
+			opp-hz = /bits/ 64 <1500000000>;
+			opp-microvolt = <910000>;
+			opp-supported-hw = <0x2>;
+			st,pll = <&pll1_cfg_1500MHz>;
+		};
+	};
+	/* USER CODE END root */
+
+	memory@80000000{
+		device_type = "memory";
+		reg = <0x0 0x80000000 0x0 0x80000000>;
+	};
+};
+
+&pinctrl {
+
+	sdmmc1_pins_mx:sdmmc1_mx-0{
+
+		pins1{
+			pinmux = <STM32_PINMUX('E', 0, AF10)>,
+					<STM32_PINMUX('E', 1, AF10)>,
+					<STM32_PINMUX('E', 2, AF10)>,
+					<STM32_PINMUX('E', 4, AF10)>,
+					<STM32_PINMUX('E', 5, AF10)>;
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <2>;
+		};
+
+		pins2{
+			pinmux = <STM32_PINMUX('E', 3, AF10)>;
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <3>;
+		};
+	};
+
+	usart2_pins_mx:usart2_mx-0{
+
+		pins1{
+			pinmux = <STM32_PINMUX('A', 4, AF6)>;
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <0>;
+		};
+
+		pins2{
+			pinmux = <STM32_PINMUX('A', 8, AF8)>;
+			bias-disable;
+			drive-push-pull;
+		};
+	};
+};
+
+&pinctrl_z {
+};
+
+&ddr {
+	status = "okay";
+};
+
+&iwdg1 {
+	status = "okay";
+
+	/* USER CODE BEGIN iwdg1 */
+	timeout-sec = <32>;
+	/* USER CODE END iwdg1 */
+};
+
+&ltdc {
+	status = "okay";
+};
+
+&rcc {
+	status = "okay";
+};
+
+&sdmmc1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&sdmmc1_pins_mx>;
+	status = "okay";
+
+	/* USER CODE BEGIN sdmmc1 */
+	st,neg-edge;
+	bus-width = <4>;
+	/* USER CODE END sdmmc1 */
+};
+
+&usart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usart2_pins_mx>;
+	status = "okay";
+};
+
+/* USER CODE BEGIN addons */
+
+&cpu0 {
+	operating-points-v2 = <&cpu0_opp_table>;
+};
+
+&bsec {
+
+	board_id:board_id@3d8{
+		reg = <0x3d8 0x4>;
+	};
+};
+/* USER CODE END addons */

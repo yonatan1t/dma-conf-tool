@@ -1,0 +1,132 @@
+[#ftl]
+@ECHO OFF
+:: ==============================================================================
+::                               General
+:: ==============================================================================
+[#--  set stm32programmercli="C:\Program Files\STMicroelectronics\STM32Cube\STM32CubeProgrammer\bin\STM32_Programmer_CLI.exe"--]
+set stm32programmercli="${STM32CubeProgrammerPath}"
+[#if BootPathType?? && ((BootPathType=="ST_IROT_UROT_SECURE_MANAGER") || (isAppliOnly?? && !IDE?contains("STM32CubeIDE")))]
+set stm32tpccli="${tpcPath}"
+[#else]
+set stm32tpccli=${tpcPath}
+[/#if]
+[#if isAppliOnly??]
+:: Select device type (H7S or H7R)
+set device_type="${H7S_H7R}"
+[/#if]
+::~dp0 = represent the folder where the env.bat is started
+:: ==============================================================================
+::               !!!! DOT NOT EDIT --- UPDATED AUTOMATICALLY !!!!
+:: ==============================================================================
+set PROJECT_GENERATED_BY_CUBEMX=true
+[#if isAppliOnly??]
+set cube_fw_path=${CubeFwPath}
+[#else]
+set cube_fw_path="${CubeFwPath}"
+[/#if]
+
+[#if isAppliOnly??]
+set stm32tool_path=${STM32CubeProgrammerLocation}
+set stm32tool_path=%stm32tool_path:\=/%
+set stm32ExtLoaderFlash=-elbl %stm32tool_path%/ExternalLoader/MX66UW1G45G_STM32H7S78-DK_XSPIM1-SFIx.stldr
+set stm32ExtLoaderFlashOpen=-el %stm32tool_path%/ExternalLoader/MX66UW1G45G_STM32H7S78-DK_XSPIM1.stldr
+[/#if] 
+
+[#-- STiRoT --]
+[#if BootPathType?? && BootPathType=="ST_IROT"]
+:: ==============================================================================
+::                            STiRoT bootpath
+:: ==============================================================================
+[#if appli_assembly_sign?? && appli_assembly_sign!=""]
+set stirot_appli=${appli_assembly_sign}
+set stirot_appli_bin=${appli_secure}
+[#elseif appli_secure??] 
+set stirot_appli=${appli_secure}
+[#elseif isAppliOnly??]
+set stirot_appli=${appli}
+set com_port=COM7
+set stirot_iloader_boot_path_project=${CubeFwPath}\Projects\STM32H7S78-DK\Applications\ROT\STiROT_iLoader
+[/#if]
+set isFullSecure=${isFullSecure}
+set stirot_boot_path_project=%~dp0..\
+set rot_provisioning_path=%~dp0
+	[#if appli_non_secure??] 
+:: ==============================================================================
+::                            For Assembly Python script
+:: ==============================================================================
+set appli_path=${appli_secure_path}
+set appli_non_secure=${appli_non_secure}
+set appli_non_secure_path=${appli_non_secure_path}
+set appli_assembly=${appli_assembly_file_name}
+set appli_assembly_path=${appli_assembly_path}
+set code_size=${secure_code_size}
+set code_image_path=${code_image_path}
+	[/#if]
+[#--  
+set stirot_boot_path_project=${boot_path_project}
+set rot_provisioning_path=${boot_path_project}\ROT_provisioning
+--]
+
+[/#if]
+[#-- OEMiRoT --]
+[#if BootPathType?? && (BootPathType=="OEM_IROT" || BootPathType=="ST_IROT_UROT")]
+:: ==============================================================================
+::                            ${BootPathType} bootpath
+:: ==============================================================================
+[#if appli_secure??] 
+set oemirot_appli_secure=${appli_secure}
+[/#if]
+[#if appli_non_secure??] 
+set oemirot_appli_non_secure=${appli_non_secure}
+[/#if]
+[#if isAppliOnly??]
+set oemirot_appli=${appli}
+set com_port=COM7
+	[#if  BootPathType=="ST_IROT_UROT"]
+set stirot_iloader_boot_path_project=${CubeFwPath}\Projects\STM32H7S78-DK\Applications\ROT\STiROT_iLoader
+	[/#if]
+[/#if]
+[#if appli_assembly??]
+	[#if appli_assembly_sign??]
+[#--set oemirot_urot_appli_assembly_sign=${appli_assembly_sign} --]
+[#-- from CubeFw STM32H5 1.1.0 --]
+set oemirot_appli_assembly_sign=${appli_assembly_sign}
+	[/#if]
+[/#if]
+set oemirot_boot_path_project="${oemirot_boot_path_project}"
+set oemirot_boot=${oemirot_boot}
+set rot_provisioning_path=%~dp0
+	[#if appli_assembly??]
+:: ==============================================================================
+::                            For Assembly Python script
+:: ==============================================================================
+set appli_path=${appli_secure_path}
+set appli_non_secure_path=${appli_non_secure_path}
+set appli_assembly_path=${appli_assembly_path}
+set appli_assembly=${appli_assembly_file_name}
+set code_size=${secure_code_size}
+set code_image_path=${code_image_path}
+set isFullSecure=${isFullSecure}
+	[/#if]
+[#--
+set oemirot_boot_path_project=${boot_path_project}
+set rot_provisioning_path=${boot_path_project}\ROT_provisioning
+--]
+
+[/#if]
+
+[#-- SMAK --]
+[#if BootPathType?? && (BootPathType=="ST_IROT_UROT_SECURE_MANAGER")]
+:: ==============================================================================
+::                            SMAK bootpath
+:: ==============================================================================
+[#-- set smak_appli=${appli_non_secure} --]
+[#--  
+:: Select secure manager binaries version
+set rsse_binary=RSSe_SFI_v1.0.0.rc1.bin
+set ssfi_binary=SecureManagerPackage_v1.0.0.rc1.ssfi
+--]
+:: Configure Virtual Com Port
+set com_port=COM4
+[/#if]
+

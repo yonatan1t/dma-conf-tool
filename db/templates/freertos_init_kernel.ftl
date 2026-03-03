@@ -1,0 +1,18 @@
+[#ftl]
+[#compress]
+[#assign CMSIS_version = "unknown"]
+[#list SWIPdatas as SWIP]
+  [#if SWIP.variables??]
+	[#list SWIP.variables as variable]
+	  [#if variable.name=="CMSIS_version"]
+        [#assign CMSIS_version = variable.value]
+	  [/#if]
+    [/#list]
+  [/#if]
+[/#list]
+[#assign CMSIS_version_integer=Integer.parseInt(CMSIS_version?substring(0,1)) ]
+[#if CMSIS_version_integer gte 2]  [#--Nothing was generated in CMSI-RTOS v1 --]
+#t/* Init scheduler */
+#tosKernelInitialize();
+[/#if]
+[/#compress]

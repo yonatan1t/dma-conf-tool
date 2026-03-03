@@ -1,0 +1,11 @@
+&uart4_pins_mx {
+	bootph-all;
+	pins1 {	/* UART4_RX */
+		bootph-all;
+		/* pull-up on rx to avoid floating level */
+		bias-pull-up;
+	};
+	pins2 {
+		bootph-all;
+	};
+};

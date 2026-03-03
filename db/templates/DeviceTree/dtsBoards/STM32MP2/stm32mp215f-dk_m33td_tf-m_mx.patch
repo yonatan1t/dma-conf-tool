@@ -1,0 +1,22 @@
+/* USER CODE BEGIN pinctrl */
+uart4_pins_mx: uart4_mx-0 {
+	pins1 {
+		pinmux = <STM32_PINMUX('H', 7, AF4)>; /* UART4_TX */
+		bias-disable;
+		drive-push-pull;
+		slew-rate = <0>;
+	};
+	pins2 {
+		pinmux = <STM32_PINMUX('H', 8, AF4)>; /* UART4_RX */
+		bias-disable;
+		drive-push-pull;
+	};
+};
+/* USER CODE END pinctrl */
+&uart4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart4_pins_mx>;
+	clocks = <&rcc CK_KER_UART4>;
+	current-speed = <115200>;
+	status = "okay";
+};

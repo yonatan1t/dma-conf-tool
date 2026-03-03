@@ -1,0 +1,91 @@
+/dts-v1/;
+#include "dt-bindings/clock/stm32mp21-clksrc.h"
+#include "dt-bindings/reset/stm32mp21-resets.h"
+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
+#include "stm32mp215.dtsi"
+#include "stm32mp215f-board_215f-dk_a35td_tzen-mx-rcc.dtsi"
+#include "stm32mp215f-board_215f-dk_a35td_tzen-mx-resmem.dtsi"
+
+/* USER CODE BEGIN includes */
+#include <dt-bindings/clock/stm32mp21-clksrc.h>
+#include <dt-bindings/reset/st,stm32mp21-rcc.h>
+/* USER CODE END includes */
+
+/{
+	model = "STMicroelectronics STM32MP215F-DK STM32CubeMX board - openstlinux-6.6-yocto-scarthgap-mpu-v25.01.03";
+	compatible = "st,stm32mp215f-board_215f-dk_a35td_tzen-mx", "st,stm32mp215f-dk", "st,stm32mp215";
+
+	/* USER CODE BEGIN root */
+
+	aliases{
+		serial0 = &uart4;
+	};
+
+	chosen{
+		stdout-device = &uart4;
+	};
+	/* USER CODE END root */
+
+	memory@80000000{
+		device_type = "memory";
+		reg = <0x80000000 0x80000000>;
+	};
+};
+
+&pinctrl {
+/* USER CODE BEGIN pinctrl */
+/* USER CODE END pinctrl */
+
+};
+
+&pinctrl_z {
+/* USER CODE BEGIN pinctrl_z */
+/* USER CODE END pinctrl_z */
+};
+
+&rcc {
+	status = "okay";
+};
+
+&systick {
+	status = "okay";
+
+	/* USER CODE BEGIN systick */
+	clocks = <&rcc CK_ICN_HS_MCU>;
+	clock-frequency = <1000000>;
+	/* USER CODE END systick */
+};
+
+&uart4 {
+	status = "okay";
+
+	/* USER CODE BEGIN uart4 */
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart4_pins_a>;
+	clocks = <&rcc CK_KER_UART4>;
+	current-speed = <115200>;
+	/* USER CODE END uart4 */
+};
+
+/* USER CODE BEGIN addons */
+
+&bsec {
+	memory-region = <&bsec_mirror>;
+	status = "okay";
+};
+&clk_lsi {
+	status = "disabled";
+};
+&clk_hsi {
+	status = "disabled";
+};
+&clk_msi {
+	status = "disabled";
+};
+&clk_lse {
+	status = "disabled";
+};
+&clk_hse {
+	status = "disabled";	
+};
+/* USER CODE END addons */

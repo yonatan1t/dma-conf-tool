@@ -1,0 +1,11 @@
+&usart2_pins_mx{
+ 	bootph-all;
+
+  	pins1{
+ 		bootph-all;
+  	};
+
+  	pins2{
+ 		bootph-all;
+  	};
+};

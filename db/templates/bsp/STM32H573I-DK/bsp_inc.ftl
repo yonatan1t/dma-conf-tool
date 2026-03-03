@@ -1,0 +1,72 @@
+[#ftl]
+[#list SWIPdatas as SWIP]
+[#assign instName = SWIP.ipName]
+[#assign fileName = SWIP.fileName]
+[#assign version = SWIP.version]
+
+  [#if SWIP.defines??]
+    [#list SWIP.defines as definition]
+      [#if definition.name=="LD1"]
+          [#assign LED1 = definition.value]
+      [/#if]
+      [#if definition.name=="LD2"]
+          [#assign LED2 = definition.value]
+      [/#if]
+      [#if definition.name=="LD3"]
+          [#assign LED3 = definition.value]
+      [/#if]
+      [#if definition.name=="LD4"]
+          [#assign LED4 = definition.value]
+      [/#if]
+      [#if definition.name=="BUTTON"]
+          [#assign BUTTON = definition.value]
+      [/#if]
+      [#if definition.name=="VCP"]
+          [#assign VCP = definition.value]
+      [/#if]
+
+      [#if definition.name=="Bsp_Common_DEMO"]
+          [#assign Bsp_Common_DEMO = definition.value]
+      [/#if]
+
+      [#if definition.name=="LCD_TC_ON"]
+          [#assign LCD_TC_ON = definition.value]
+      [/#if]
+      [#if definition.name=="AUDIO_IN"]
+          [#assign AUDIO_IN = definition.value]
+      [/#if]
+      [#if definition.name=="AUDIO_OUT"]
+          [#assign AUDIO_OUT = definition.value]
+      [/#if]
+      [#if definition.name=="OCTOSPI_DEMO"]
+          [#assign OCTOSPI_DEMO = definition.value]
+      [/#if]
+      [#if definition.name=="SD_CARD_DEMO"]
+          [#assign SD_CARD_DEMO = definition.value]
+      [/#if]
+    [/#list]
+  [/#if]
+[/#list]
+
+[#if instName.toLowerCase()?contains("nucleo")]
+#include "${FamilyName?lower_case}xx_nucleo.h"
+[#else]
+#include "${instName.toLowerCase()?replace('-dk','_discovery')}.h"
+[/#if]
+[#if VCP == "true"]
+#include <stdio.h>
+[/#if]
+[#if (LCD_TC_ON?? && LCD_TC_ON == "true")]
+#include "stm32h573i_discovery_lcd.h"
+#include "stm32h573i_discovery_ts.h"
+#include "stm32_lcd.h"
+[/#if]
+[#if (AUDIO_IN == "true") || (AUDIO_OUT == "true") || (AUDIO_IN == "true" && AUDIO_OUT == "true")]
+#include "stm32h573i_discovery_audio.h"
+[/#if]
+[#if OCTOSPI_DEMO == "true"]
+#include "stm32h573i_discovery_ospi.h"
+[/#if]
+[#if SD_CARD_DEMO == "true"]
+#include "stm32h573i_discovery_sd.h"
+[/#if]

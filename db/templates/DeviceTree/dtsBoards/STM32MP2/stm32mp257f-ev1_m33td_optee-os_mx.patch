@@ -1,0 +1,20 @@
+/* USER CODE BEGIN pinctrl */
+	usart2_pins_mx:usart2_mx-0{
+
+		pins1 {
+			pinmux = <STM32_PINMUX_NSEC('A', 4, AF6)>; /* USART2_TX */
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <0>;
+		};
+		pins2 {
+			pinmux = <STM32_PINMUX_NSEC('A', 8, AF8)>; /* USART2_RX */
+			bias-disable;
+		};
+	};
+/* USER CODE END pinctrl */
+&usart2 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&usart2_pins_mx>;
+	status = "okay";
+};
