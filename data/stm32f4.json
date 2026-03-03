@@ -1,0 +1,25 @@
+{
+  "version": "2026.03.03",
+  "family": "stm32f4",
+  "soc": ["stm32f407", "stm32f429"],
+  "peripherals": {
+    "uart": ["usart1", "usart2", "uart4"],
+    "spi": ["spi1", "spi2"]
+  },
+  "mappings": [
+    { "peripheral": "usart1", "direction": "tx", "controller": "dma2", "stream": 7, "channel": 4, "request": null },
+    { "peripheral": "usart1", "direction": "rx", "controller": "dma2", "stream": 2, "channel": 4, "request": null },
+
+    { "peripheral": "usart2", "direction": "tx", "controller": "dma1", "stream": 6, "channel": 4, "request": null },
+    { "peripheral": "usart2", "direction": "rx", "controller": "dma1", "stream": 5, "channel": 4, "request": null },
+
+    { "peripheral": "uart4", "direction": "tx", "controller": "dma1", "stream": 4, "channel": 4, "request": null },
+    { "peripheral": "uart4", "direction": "rx", "controller": "dma1", "stream": 2, "channel": 4, "request": null },
+
+    { "peripheral": "spi1", "direction": "tx", "controller": "dma2", "stream": 3, "channel": 3, "request": null },
+    { "peripheral": "spi1", "direction": "rx", "controller": "dma2", "stream": 0, "channel": 3, "request": null },
+
+    { "peripheral": "spi2", "direction": "tx", "controller": "dma1", "stream": 4, "channel": 0, "request": null },
+    { "peripheral": "spi2", "direction": "rx", "controller": "dma1", "stream": 3, "channel": 0, "request": null }
+  ]
+}

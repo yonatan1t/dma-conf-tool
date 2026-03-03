@@ -1,0 +1,22 @@
+{
+  "version": "2026.03.03",
+  "family": "stm32h7",
+  "soc": ["stm32h743", "stm32h753"],
+  "peripherals": {
+    "uart": ["usart1", "usart3"],
+    "spi": ["spi1", "spi3"]
+  },
+  "mappings": [
+    { "peripheral": "usart1", "direction": "tx", "controller": "dma1", "stream": 0, "channel": 0, "request": 41 },
+    { "peripheral": "usart1", "direction": "rx", "controller": "dma1", "stream": 1, "channel": 0, "request": 40 },
+
+    { "peripheral": "usart3", "direction": "tx", "controller": "dma1", "stream": 2, "channel": 0, "request": 46 },
+    { "peripheral": "usart3", "direction": "rx", "controller": "dma1", "stream": 3, "channel": 0, "request": 45 },
+
+    { "peripheral": "spi1", "direction": "tx", "controller": "dma2", "stream": 0, "channel": 0, "request": 38 },
+    { "peripheral": "spi1", "direction": "rx", "controller": "dma2", "stream": 1, "channel": 0, "request": 37 },
+
+    { "peripheral": "spi3", "direction": "tx", "controller": "dma1", "stream": 5, "channel": 0, "request": 61 },
+    { "peripheral": "spi3", "direction": "rx", "controller": "dma1", "stream": 4, "channel": 0, "request": 60 }
+  ]
+}
