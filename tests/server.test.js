@@ -71,6 +71,12 @@ test('web server: catalog and extractor endpoints work', { timeout: 60000 }, asy
   assert.ok(okExtract.candidates.length > 0);
   assert.ok(okExtract.candidates.every((c) => c.endpointType === 'channel'));
 
+  const h5ExtractRes = await fetch(`${baseUrl}/api/extract?mcu=STM32H503CBTx&peripheral=USART1`);
+  assert.equal(h5ExtractRes.status, 200, stderr);
+  const h5Extract = await h5ExtractRes.json();
+  assert.ok(h5Extract.candidates.length > 0);
+  assert.equal(h5Extract.dmaIp, 'GPDMA');
+
   const badExtractRes = await fetch(`${baseUrl}/api/extract?mcu=STM32F429ZITx`);
   assert.equal(badExtractRes.status, 400);
   const badExtract = await badExtractRes.json();

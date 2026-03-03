@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "test": "node --test tests/*.test.js"
+    "test": "node --test tests/*.test.js",
+    "sweep": "node tools/sweep-extractor.js --concurrency 24"
   }
 }

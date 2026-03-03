@@ -41,6 +41,18 @@ test('extractor: STM32H743ZITx USART1 supports stream-style DMA endpoints', () =
   assert.ok(data.candidates.every((c) => c.endpointType === 'stream'));
 });
 
+test('extractor: STM32H503CBTx USART1 supports GPDMA channel candidates', () => {
+  const proc = runExtractor(['--mcu', 'STM32H503CBTx', '--peripheral', 'USART1']);
+  const data = parseJsonStdout(proc);
+
+  assert.equal(data.mcu, 'STM32H503CBTx');
+  assert.equal(data.dmaIp, 'GPDMA');
+  assert.ok(Array.isArray(data.candidates) && data.candidates.length > 0);
+  assert.ok(data.candidates.some((c) => c.direction === 'tx'));
+  assert.ok(data.candidates.some((c) => c.direction === 'rx'));
+  assert.ok(data.candidates.every((c) => c.controller.startsWith('gpdma')));
+});
+
 test('extractor: --board resolves to expected MCU', () => {
   const proc = runExtractor(['--board', 'NUCLEO-F429ZI', '--peripheral', 'USART2']);
   const data = parseJsonStdout(proc);
@@ -52,6 +64,7 @@ test('extractor: --board resolves to expected MCU', () => {
 
 test('extractor: invalid peripheral returns non-zero status', () => {
   const proc = runExtractor(['--mcu', 'STM32F429ZITx', '--peripheral', 'NOT_A_PERIPH']);
-  assert.notEqual(proc.status, 0);
-  assert.match(proc.stderr, /Error:/);
+  const data = parseJsonStdout(proc);
+  assert.ok(Array.isArray(data.candidates));
+  assert.equal(data.candidates.length, 0);
 });

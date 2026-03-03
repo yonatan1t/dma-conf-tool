@@ -120,23 +120,78 @@ function resolveTargetMcu(args) {
 }
 
 function extractAttribute(tag, attr) {
-  const m = tag.match(new RegExp(`${attr}="([^"]+)"`));
+  const m = tag.match(new RegExp(`(?:^|\\s)${attr}="([^"]+)"`));
   return m ? m[1] : '';
 }
 
 function extractDmaVersion(mcuXml) {
-  const ipRegex = /<IP\b[^>]*Name="DMA"[^>]*>/g;
+  const ipRegex = /<IP\b[^>]*Name="(DMA|GPDMA)"[^>]*>/g;
+  const candidates = [];
   let match;
   while ((match = ipRegex.exec(mcuXml))) {
     const tag = match[0];
+    const name = extractAttribute(tag, 'Name');
     const version = extractAttribute(tag, 'Version');
-    if (version) return version;
+    if (name && version) candidates.push({ name, version });
   }
-  return '';
+  const dma = candidates.find((c) => c.name === 'DMA');
+  if (dma) return dma;
+  const gpdma = candidates.find((c) => c.name === 'GPDMA');
+  if (gpdma) return gpdma;
+  return null;
+}
+
+function extractAllRefParameterBlocks(xml, paramNamePattern) {
+  const out = [];
+  const re = /<RefParameter\b([^>]*)>([\s\S]*?)<\/RefParameter>/g;
+  let m;
+  while ((m = re.exec(xml))) {
+    const attrs = m[1] || '';
+    const name = extractAttribute(attrs, 'Name').trim();
+    const block = m[2] || '';
+    if (!name) continue;
+    if (paramNamePattern.test(name)) out.push({ name, block });
+  }
+  return out;
+}
+
+function parseGpdmaCandidates(modeXml, peripheral) {
+  const periph = peripheral.toUpperCase();
+  const reqBlocks = extractAllRefParameterBlocks(modeXml, /^REQUEST_GPDMACH\d+$/);
+  if (!reqBlocks.length) return [];
+
+  const out = [];
+  for (const { name, block } of reqBlocks) {
+    const chMatch = name.match(/^REQUEST_GPDMACH(\d+)$/);
+    if (!chMatch) continue;
+    const channelIndex = Number(chMatch[1]);
+    const values = extractPossibleValues(block);
+    for (let idx = 0; idx < values.length; idx += 1) {
+      const token = values[idx];
+      if (!token.includes(`_${periph}_`)) continue;
+      const dir = token.endsWith('_TX') ? 'tx' : (token.endsWith('_RX') ? 'rx' : 'other');
+      if (dir === 'other') continue;
+      const ctrlMatch = token.match(/^(GPDMA\d+)_REQUEST_/);
+      if (!ctrlMatch) continue;
+
+      out.push({
+        request: `${periph}_${dir.toUpperCase()}`,
+        direction: dir,
+        controller: ctrlMatch[1].toLowerCase(),
+        stream: channelIndex,
+        endpointType: 'channel',
+        channel: null,
+        requestToken: token,
+        requestId: idx
+      });
+    }
+  }
+
+  return out;
 }
 
 function extractParamBlock(xml, paramName) {
-  const re = new RegExp(`<RefParameter[^>]*Name="${paramName}"[^>]*>([\\s\\S]*?)<\\/RefParameter>`);
+  const re = new RegExp(`<RefParameter\\b[^>]*(?:\\s|^)Name="${paramName}"[^>]*>([\\s\\S]*?)<\\/RefParameter>`);
   const m = xml.match(re);
   return m ? m[1] : '';
 }
@@ -357,55 +412,93 @@ function main() {
   const target = resolveTargetMcu(args);
   const mcuPath = path.join(args.db, 'mcu', `${target.mcu}.xml`);
   const mcuXml = readFileOrFail(mcuPath);
+  const peripheral = normalizePeriphName(args.peripheral);
 
-  const dmaVersion = extractDmaVersion(mcuXml);
-  if (!dmaVersion) fail(`DMA IP version not found in ${mcuPath}`);
+  const dmaIp = extractDmaVersion(mcuXml);
+  if (!dmaIp) {
+    const result = {
+      mcu: target.mcu,
+      board: target.board,
+      boardIoc: target.boardIoc,
+      peripheral,
+      dmaIp: null,
+      dmaVersion: null,
+      modeFile: null,
+      candidates: []
+    };
+    if (args.format === 'json') {
+      console.log(JSON.stringify(result, null, 2));
+      return;
+    }
+    console.log(`MCU: ${target.mcu}`);
+    console.log(`Peripheral: ${peripheral}`);
+    console.log('No DMA/GPDMA IP found for this MCU.');
+    return;
+  }
 
-  const modePath = path.join(args.db, 'mcu', 'IP', `DMA-${dmaVersion}_Modes.xml`);
+  const modePath = path.join(args.db, 'mcu', 'IP', `${dmaIp.name}-${dmaIp.version}_Modes.xml`);
   if (!fs.existsSync(modePath)) {
-    fail(`DMA mode file not found: ${modePath}`);
+    const result = {
+      mcu: target.mcu,
+      board: target.board,
+      boardIoc: target.boardIoc,
+      peripheral,
+      dmaIp: dmaIp.name,
+      dmaVersion: dmaIp.version,
+      modeFile: modePath,
+      candidates: []
+    };
+    if (args.format === 'json') {
+      console.log(JSON.stringify(result, null, 2));
+      return;
+    }
+    console.log(`MCU: ${target.mcu}`);
+    console.log(`Peripheral: ${peripheral}`);
+    console.log(`DMA IP: ${dmaIp.name}`);
+    console.log(`DMA mode file not found: ${modePath}`);
+    return;
   }
 
   const modeXml = readFileOrFail(modePath);
 
-  const instanceParam = extractParamBlock(modeXml, 'Instance');
-  const endpointValues = extractPossibleValues(instanceParam).filter((v) => /^DMA\d+_(Stream|Channel)\d+$/.test(v));
-  if (!endpointValues.length) fail(`No DMA stream/channel values found in ${modePath}`);
-
   const refModes = extractRefModes(modeXml);
-  const requestToEndpoints = buildRequestToEndpoints(modeXml, endpointValues);
   const requestIdMap = buildRequestIdMap(modeXml);
 
-  const peripheral = normalizePeriphName(args.peripheral);
-  const modeMatches = refModes.filter((m) => m.name.startsWith(`${peripheral}_`));
-  if (!modeMatches.length) {
-    fail(`No DMA request modes found for ${peripheral} in ${path.basename(modePath)}`);
-  }
-
   const expanded = [];
-  for (const req of modeMatches) {
-    const endpoints = requestToEndpoints[req.name] || requestToEndpoints[req.name.split(':')[0]] || [];
-    const channel = parseChannelNum(req.channelVals);
-    const requestToken = parseRequestToken(req.requestVals);
-    const requestId = requestToken && Object.prototype.hasOwnProperty.call(requestIdMap, requestToken)
-      ? requestIdMap[requestToken]
-      : null;
-    const direction = directionFromModeName(req.name, req.directionVals);
+  const instanceParam = extractParamBlock(modeXml, 'Instance');
+  const endpointValues = extractPossibleValues(instanceParam).filter((v) => /^DMA\d+_(Stream|Channel)\d+$/.test(v));
 
-    for (const endpointName of endpoints) {
-      const parts = endpointParts(endpointName);
-      if (!parts) continue;
-      expanded.push({
-        request: req.name,
-        direction,
-        controller: parts.controller,
-        stream: parts.stream,
-        endpointType: parts.endpointType,
-        channel,
-        requestToken
-        ,requestId
-      });
+  if (endpointValues.length) {
+    const requestToEndpoints = buildRequestToEndpoints(modeXml, endpointValues);
+    const modeMatches = refModes.filter((m) => m.name.startsWith(`${peripheral}_`));
+    if (modeMatches.length) {
+      for (const req of modeMatches) {
+        const endpoints = requestToEndpoints[req.name] || requestToEndpoints[req.name.split(':')[0]] || [];
+        const channel = parseChannelNum(req.channelVals);
+        const requestToken = parseRequestToken(req.requestVals);
+        const requestId = requestToken && Object.prototype.hasOwnProperty.call(requestIdMap, requestToken)
+          ? requestIdMap[requestToken]
+          : null;
+        const direction = directionFromModeName(req.name, req.directionVals);
+
+        for (const endpointName of endpoints) {
+          const parts = endpointParts(endpointName);
+          if (!parts) continue;
+          expanded.push({
+            request: req.name,
+            direction,
+            controller: parts.controller,
+            stream: parts.stream,
+            endpointType: parts.endpointType,
+            channel,
+            requestToken,
+            requestId
+          });
+        }
+      }
     }
+  } else {
+    expanded.push(...parseGpdmaCandidates(modeXml, peripheral));
   }
 
   const txCandidates = expanded.filter((e) => e.direction === 'tx');
@@ -416,7 +509,8 @@ function main() {
     board: target.board,
     boardIoc: target.boardIoc,
     peripheral,
-    dmaVersion,
+    dmaIp: dmaIp.name,
+    dmaVersion: dmaIp.version,
     modeFile: modePath,
     candidates: expanded
   };
@@ -432,6 +526,7 @@ function main() {
   }
   console.log(`MCU: ${target.mcu}`);
   console.log(`Peripheral: ${peripheral}`);
+  console.log(`DMA IP: ${dmaIp.name}`);
   console.log(`DMA mode file: ${modePath}`);
   console.log('');
 

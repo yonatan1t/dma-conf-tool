@@ -53,6 +53,17 @@ This validates:
 - board-to-MCU resolution
 - web API catalog/extract endpoints
 
+Run a broad robustness sweep across the CubeMX DB:
+
+```bash
+npm run sweep
+```
+
+This executes extractor calls across MCU + UART/SPI instance combinations and reports:
+- `OK with candidates`
+- `OK empty` (valid combination with no DMA candidates)
+- `Failed` (should be `0`)
+
 ## Deploy note
 
 The UI now calls `/api/extract`, so pure static hosting (GitHub Pages only) is not enough by itself.
