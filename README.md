@@ -2,6 +2,8 @@
 
 A web tool to help embedded developers generate STM32 + Zephyr DMA snippets for UART/SPI.
 
+**Live app: [dma-conf-tool.onrender.com](https://dma-conf-tool.onrender.com)**
+
 ## Features (MVP)
 
 - Select STM32 family/MCU/peripheral instance
