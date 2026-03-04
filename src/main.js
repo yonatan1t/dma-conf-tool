@@ -11,7 +11,11 @@ function withBase(path) {
 
 const el = {
   family: document.querySelector('#family'),
+  targetType: document.querySelector('#target-type'),
+  mcuLabel: document.querySelector('#mcu-label'),
+  boardLabel: document.querySelector('#board-label'),
   soc: document.querySelector('#soc'),
+  board: document.querySelector('#board'),
   ptype: document.querySelector('#ptype'),
   instance: document.querySelector('#instance'),
   txMap: document.querySelector('#tx-map'),
@@ -31,8 +35,11 @@ const state = {
   currentFamily: '',
   familyList: [],
   mcusByFamily: {},
+  boardsByFamily: {},
+  boardInfoByName: {},
   peripheralsByMcu: {},
-  currentMappings: []
+  currentMappings: [],
+  currentDmaIp: null
 };
 
 function setStatus(message, type = '') {
@@ -61,6 +68,36 @@ function option(value, label) {
   return opt;
 }
 
+function setNoMappings() {
+  state.currentMappings = [];
+  state.currentDmaIp = null;
+  el.txMap.innerHTML = '';
+  el.rxMap.innerHTML = '';
+  el.txMap.append(option('', 'No TX mapping found'));
+  el.rxMap.append(option('', 'No RX mapping found'));
+}
+
+function selectedMcu() {
+  if (el.targetType.value === 'board') {
+    const info = state.boardInfoByName[el.board.value];
+    return info ? info.mcu : '';
+  }
+  return el.soc.value;
+}
+
+function selectedTargetDescriptor() {
+  if (el.targetType.value === 'board') {
+    return { type: 'board', value: el.board.value || '(none)', mcu: selectedMcu() };
+  }
+  return { type: 'mcu', value: el.soc.value || '(none)', mcu: el.soc.value || '' };
+}
+
+function updateTargetControls() {
+  const boardMode = el.targetType.value === 'board';
+  el.mcuLabel.style.display = boardMode ? 'none' : '';
+  el.boardLabel.style.display = boardMode ? '' : 'none';
+}
+
 async function loadFamilies() {
   const payload = await apiGet('/api/families');
   state.familyList = payload.families || [];
@@ -74,7 +111,18 @@ async function loadMcusForFamily(family) {
   return state.mcusByFamily[family];
 }
 
+async function loadBoardsForFamily(family) {
+  if (!state.boardsByFamily[family]) {
+    const payload = await apiGet(`/api/boards?family=${encodeURIComponent(family)}`);
+    const boards = payload.boards || [];
+    state.boardsByFamily[family] = boards;
+    for (const b of boards) state.boardInfoByName[b.name] = b;
+  }
+  return state.boardsByFamily[family];
+}
+
 async function loadPeripheralsForMcu(mcu) {
+  if (!mcu) return { uart: [], spi: [] };
   if (!state.peripheralsByMcu[mcu]) {
     const payload = await apiGet(`/api/peripherals?mcu=${encodeURIComponent(mcu)}`);
     state.peripheralsByMcu[mcu] = payload.peripherals || { uart: [], spi: [] };
@@ -89,9 +137,16 @@ function fillFamilies() {
   });
 }
 
-function fillSocs(mcus) {
+function fillMcuList(mcus) {
   el.soc.innerHTML = '';
   mcus.forEach((mcu) => el.soc.append(option(mcu, mcu)));
+}
+
+function fillBoardList(boards) {
+  el.board.innerHTML = '';
+  boards.forEach((b) => {
+    el.board.append(option(b.name, `${b.name} (${b.mcu})`));
+  });
 }
 
 function fillInstances(peripherals) {
@@ -103,25 +158,32 @@ function fillInstances(peripherals) {
 }
 
 function mapLabel(m) {
+  const endpoint = m.endpointType === 'stream' ? `stream${m.stream}` : `channel${m.stream}`;
   const cell2 = Number.isInteger(m.channel)
     ? `ch${m.channel}`
     : (Number.isInteger(m.requestId) ? `req_id=${m.requestId}` : 'req/ch=?');
   const req = m.requestToken ? ` ${m.requestToken}` : '';
-  return `${m.controller} stream${m.stream} ${cell2}${req}`;
+  return `${m.controller} ${endpoint} ${cell2}${req}`;
 }
 
 async function fetchMappingsFromExtractor() {
-  const mcu = el.soc.value;
   const instance = el.instance.value;
-  if (!mcu || !instance) return [];
+  const target = selectedTargetDescriptor();
+  if (!instance || !target.mcu) return [];
 
-  const payload = await apiGet(`/api/extract?mcu=${encodeURIComponent(mcu)}&peripheral=${encodeURIComponent(instance.toUpperCase())}`);
+  const params = new URLSearchParams({ peripheral: instance.toUpperCase() });
+  if (target.type === 'board') params.set('board', target.value);
+  else params.set('mcu', target.value);
+
+  const payload = await apiGet(`/api/extract?${params.toString()}`);
+  state.currentDmaIp = payload.dmaIp || null;
   const normalizedPeripheral = instance.toLowerCase();
   return payload.candidates.map((c) => ({
     peripheral: normalizedPeripheral,
     direction: c.direction,
     controller: c.controller,
     stream: c.stream,
+    endpointType: c.endpointType || 'stream',
     channel: Number.isInteger(c.channel) ? c.channel : null,
     requestId: Number.isInteger(c.requestId) ? c.requestId : null,
     requestToken: c.requestToken || null
@@ -131,11 +193,7 @@ async function fetchMappingsFromExtractor() {
 async function fillMappings() {
   const instance = el.instance.value;
   if (!instance) {
-    state.currentMappings = [];
-    el.txMap.innerHTML = '';
-    el.rxMap.innerHTML = '';
-    el.txMap.append(option('', 'No TX mapping found'));
-    el.rxMap.append(option('', 'No RX mapping found'));
+    setNoMappings();
     return;
   }
 
@@ -143,14 +201,11 @@ async function fillMappings() {
   try {
     mappings = await fetchMappingsFromExtractor();
   } catch (err) {
-    state.currentMappings = [];
-    el.txMap.innerHTML = '';
-    el.rxMap.innerHTML = '';
-    el.txMap.append(option('', 'No TX mapping found'));
-    el.rxMap.append(option('', 'No RX mapping found'));
+    setNoMappings();
     setStatus(`No DMA mapping available: ${err.message}`, 'warn');
     return;
   }
+
   state.currentMappings = mappings;
 
   const tx = mappings.filter((m) => m.peripheral === instance && m.direction === 'tx');
@@ -158,7 +213,6 @@ async function fillMappings() {
 
   el.txMap.innerHTML = '';
   el.rxMap.innerHTML = '';
-
   tx.forEach((m, idx) => el.txMap.append(option(String(idx), mapLabel(m))));
   rx.forEach((m, idx) => el.rxMap.append(option(String(idx), mapLabel(m))));
 
@@ -203,20 +257,18 @@ function renderOverlay(instance, txMap, rxMap) {
 
 function renderPrjConf() {
   const type = el.ptype.value;
+  const dmaDriver = state.currentDmaIp === 'GPDMA' ? 'CONFIG_DMA_STM32U5=y' : 'CONFIG_DMA_STM32=y';
   const lines = [
     '# Generated by Zephyr DMA Config Helper',
     'CONFIG_DMA=y',
-    'CONFIG_DMA_STM32=y'
+    dmaDriver
   ];
 
   if (type === 'uart') {
     lines.push('CONFIG_SERIAL=y');
     lines.push('CONFIG_UART_ASYNC_API=y');
   }
-  if (type === 'spi') {
-    lines.push('CONFIG_SPI=y');
-  }
-
+  if (type === 'spi') lines.push('CONFIG_SPI=y');
   return lines.join('\n') + '\n';
 }
 
@@ -224,24 +276,24 @@ function validate(instance, txMap, rxMap) {
   const checks = [];
   const warnings = [];
   const errors = [];
+  const target = selectedTargetDescriptor();
 
   checks.push(`Target family: ${el.family.value}`);
-  checks.push(`MCU: ${el.soc.value}`);
+  checks.push(`Target type: ${target.type}`);
+  checks.push(`Target: ${target.value}`);
+  checks.push(`MCU: ${target.mcu || '(unknown)'}`);
   checks.push(`Peripheral: ${instance}`);
 
-  if (!txMap || !rxMap) {
-    errors.push('Missing TX and/or RX mapping from extractor output.');
-  }
-
+  if (!txMap || !rxMap) errors.push('Missing TX and/or RX mapping from extractor output.');
   if (txMap && rxMap && txMap.controller === rxMap.controller && txMap.stream === rxMap.stream) {
-    errors.push('TX and RX currently use the same DMA stream. Pick different streams.');
+    errors.push('TX and RX currently use the same DMA endpoint. Pick different channels/streams.');
   }
 
   if (txMap && (txMap.requestToken || Number.isInteger(txMap.requestId))) {
-    warnings.push('TX request id is present; verify DMAMUX request line in RM and Zephyr docs.');
+    warnings.push('TX request id is present; verify request line in RM and Zephyr docs.');
   }
   if (rxMap && (rxMap.requestToken || Number.isInteger(rxMap.requestId))) {
-    warnings.push('RX request id is present; verify DMAMUX request line in RM and Zephyr docs.');
+    warnings.push('RX request id is present; verify request line in RM and Zephyr docs.');
   }
 
   checks.push('Verify peripheral node name matches your board DTS (e.g. &usart2).');
@@ -351,7 +403,9 @@ function attachOutputActions() {
 function toQuery() {
   const params = new URLSearchParams({
     family: el.family.value,
+    target: el.targetType.value,
     soc: el.soc.value,
+    board: el.board.value,
     ptype: el.ptype.value,
     instance: el.instance.value,
     tx: el.txMap.value,
@@ -366,16 +420,9 @@ function restoreFromQuery() {
   return new URLSearchParams(location.search);
 }
 
-async function refreshForFamily(query = null) {
-  state.currentFamily = el.family.value;
-  const mcus = await loadMcusForFamily(state.currentFamily);
-  fillSocs(mcus);
-
-  if (query && query.get('soc') && mcus.includes(query.get('soc'))) {
-    el.soc.value = query.get('soc');
-  }
-
-  const peripherals = await loadPeripheralsForMcu(el.soc.value);
+async function refreshTargetData(query = null) {
+  const mcu = selectedMcu();
+  const peripherals = await loadPeripheralsForMcu(mcu);
   if (query && query.get('ptype')) el.ptype.value = query.get('ptype');
   fillInstances(peripherals);
 
@@ -392,51 +439,73 @@ async function refreshForFamily(query = null) {
     if (query.get('priority')) el.priority.value = query.get('priority');
     if (query.get('mode')) el.mode.value = query.get('mode');
   }
+}
 
-  el.dbVersion.textContent = `Families: ${state.familyList.length} (live CubeMX DB)`;
+async function refreshForFamily(query = null) {
+  state.currentFamily = el.family.value;
+  const [mcus, boards] = await Promise.all([
+    loadMcusForFamily(state.currentFamily),
+    loadBoardsForFamily(state.currentFamily)
+  ]);
+
+  fillMcuList(mcus);
+  fillBoardList(boards);
+
+  if (query && query.get('soc') && mcus.includes(query.get('soc'))) {
+    el.soc.value = query.get('soc');
+  }
+
+  if (query && query.get('board') && boards.some((b) => b.name === query.get('board'))) {
+    el.board.value = query.get('board');
+  }
+
+  if (!el.soc.value && mcus.length) el.soc.value = mcus[0];
+  if (!el.board.value && boards.length) el.board.value = boards[0].name;
+
+  if (query && query.get('target')) {
+    el.targetType.value = query.get('target') === 'board' ? 'board' : 'mcu';
+  }
+
+  if (el.targetType.value === 'board' && !el.board.value && boards.length) {
+    el.targetType.value = 'mcu';
+  }
+
+  updateTargetControls();
+  await refreshTargetData(query);
+
+  el.dbVersion.textContent = `Families: ${state.familyList.length} | Boards: ${boards.length} (live CubeMX DB)`;
 }
 
 async function init() {
   await loadFamilies();
-  if (!state.familyList.length) {
-    throw new Error('No STM32 families found in db/mcu');
-  }
+  if (!state.familyList.length) throw new Error('No STM32 families found in db/mcu');
 
   fillFamilies();
-
   const query = restoreFromQuery();
   const requestedFamily = query.get('family');
-  if (requestedFamily && state.familyList.includes(requestedFamily)) {
-    el.family.value = requestedFamily;
-  } else {
-    el.family.value = state.familyList[0];
-  }
+  el.family.value = (requestedFamily && state.familyList.includes(requestedFamily)) ? requestedFamily : state.familyList[0];
 
+  updateTargetControls();
   await refreshForFamily(query);
 
   el.family.addEventListener('change', () => refreshForFamily().then(generate).catch((err) => setStatus(err.message, 'err')));
 
-  el.soc.addEventListener('change', async () => {
-    try {
-      const peripherals = await loadPeripheralsForMcu(el.soc.value);
-      fillInstances(peripherals);
-      await fillMappings();
-      generate();
-    } catch (err) {
-      setStatus(err.message, 'err');
-    }
+  el.targetType.addEventListener('change', () => {
+    updateTargetControls();
+    refreshTargetData().then(generate).catch((err) => setStatus(err.message, 'err'));
   });
 
-  el.ptype.addEventListener('change', () => {
-    loadPeripheralsForMcu(el.soc.value)
-      .then((peripherals) => {
-        fillInstances(peripherals);
-        return fillMappings();
-      })
-      .then(generate)
-      .catch((err) => setStatus(err.message, 'err'));
+  el.soc.addEventListener('change', () => {
+    if (el.targetType.value !== 'mcu') return;
+    refreshTargetData().then(generate).catch((err) => setStatus(err.message, 'err'));
   });
 
+  el.board.addEventListener('change', () => {
+    if (el.targetType.value !== 'board') return;
+    refreshTargetData().then(generate).catch((err) => setStatus(err.message, 'err'));
+  });
+
+  el.ptype.addEventListener('change', () => refreshTargetData().then(generate).catch((err) => setStatus(err.message, 'err')));
   el.instance.addEventListener('change', () => fillMappings().then(generate).catch((err) => setStatus(err.message, 'err')));
 
   el.generate.addEventListener('click', generate);

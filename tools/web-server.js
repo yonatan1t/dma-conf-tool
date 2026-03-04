@@ -11,6 +11,7 @@ const PORT = Number(process.env.PORT || 8080);
 const ROOT = path.resolve(__dirname, '..');
 const EXTRACTOR = path.join(__dirname, 'cubemx-dma-extract.js');
 const MCU_DIR = path.join(ROOT, 'db', 'mcu');
+const BOARD_DIR = path.join(ROOT, 'db', 'plugins', 'boardmanager', 'boards');
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -22,8 +23,14 @@ const MIME = {
   '.txt': 'text/plain; charset=utf-8'
 };
 
+const SECURITY_HEADERS = {
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'no-referrer'
+};
+
 function send(res, status, body, contentType = 'text/plain; charset=utf-8') {
-  res.writeHead(status, { 'Content-Type': contentType, 'Cache-Control': 'no-store' });
+  res.writeHead(status, { 'Content-Type': contentType, 'Cache-Control': 'no-store', ...SECURITY_HEADERS });
   res.end(body);
 }
 
@@ -50,7 +57,8 @@ function serveStatic(req, res) {
   }
   const ext = path.extname(file).toLowerCase();
   const mime = MIME[ext] || 'application/octet-stream';
-  res.writeHead(200, { 'Content-Type': mime, 'Cache-Control': 'no-store' });
+  const cacheControl = ext === '.html' ? 'no-cache' : 'public, max-age=3600';
+  res.writeHead(200, { 'Content-Type': mime, 'Cache-Control': cacheControl, ...SECURITY_HEADERS });
   fs.createReadStream(file).pipe(res);
 }
 
@@ -66,6 +74,8 @@ function readFileHead(filePath, bytes = 4096) {
 }
 
 let catalogCache = null;
+let boardCache = null;
+const extractCache = new Map();
 
 function buildCatalog() {
   if (catalogCache) return catalogCache;
@@ -138,18 +148,69 @@ function extractPeripheralInstances(mcu) {
   };
 }
 
+function parseBoardNameFromFilename(fileName) {
+  const base = fileName.replace(/\.ioc$/i, '');
+  const parts = base.split('_');
+  // Typical patterns:
+  // A44_Nucleo_NUCLEO-F429ZI_STM32F429ZI_Board_AllConfig
+  // G74_Discovery_STM32H745I-DISCO_STM32H745XIH_Board_AllConfig
+  if (parts.length >= 3) return parts[2];
+  return base;
+}
+
+function extractMcuNameFromIoc(iocText) {
+  const m = iocText.match(/^Mcu\.Name=([^\r\n]+)$/m);
+  return m ? m[1].trim() : '';
+}
+
+function buildBoardCatalog() {
+  if (boardCache) return boardCache;
+  if (!fs.existsSync(BOARD_DIR)) {
+    boardCache = [];
+    return boardCache;
+  }
+
+  const files = fs.readdirSync(BOARD_DIR).filter((f) => f.endsWith('.ioc'));
+  const byBoard = new Map();
+
+  for (const file of files) {
+    const board = parseBoardNameFromFilename(file);
+    const full = path.join(BOARD_DIR, file);
+    let iocText = '';
+    try {
+      iocText = fs.readFileSync(full, 'utf8');
+    } catch (_err) {
+      continue;
+    }
+    const mcu = extractMcuNameFromIoc(iocText);
+    if (!mcu) continue;
+
+    const existing = byBoard.get(board);
+    const preferCurrent = file.includes('_AllConfig.ioc');
+    if (!existing || (preferCurrent && !existing.file.includes('_AllConfig.ioc'))) {
+      byBoard.set(board, {
+        name: board,
+        mcu,
+        file: path.relative(ROOT, full)
+      });
+    }
+  }
+
+  boardCache = [...byBoard.values()].sort((a, b) => a.name.localeCompare(b.name));
+  return boardCache;
+}
+
 function parseExtractorArgs(u) {
   const mcu = u.searchParams.get('mcu');
   const board = u.searchParams.get('board');
   const peripheral = u.searchParams.get('peripheral');
   const priority = u.searchParams.get('priority') || 'medium';
   const mode = u.searchParams.get('mode') || 'normal';
-  const db = u.searchParams.get('db') || 'db';
 
   if (!peripheral) return { error: 'Missing required query param: peripheral' };
   if (!mcu && !board) return { error: 'Provide mcu or board query param' };
 
-  const args = [EXTRACTOR, '--db', db, '--peripheral', peripheral, '--priority', priority, '--mode', mode, '--format', 'json'];
+  const args = [EXTRACTOR, '--db', 'db', '--peripheral', peripheral, '--priority', priority, '--mode', mode, '--format', 'json'];
   if (mcu) args.push('--mcu', mcu);
   if (board) args.push('--board', board);
   return { args };
@@ -163,6 +224,12 @@ function runExtractor(args) {
     });
     let stdout = '';
     let stderr = '';
+    let timedOut = false;
+
+    const timer = setTimeout(() => {
+      timedOut = true;
+      child.kill();
+    }, 10000);
 
     child.stdout.on('data', (chunk) => {
       stdout += chunk.toString();
@@ -172,7 +239,8 @@ function runExtractor(args) {
     });
 
     child.on('close', (code) => {
-      resolve({ code, stdout, stderr });
+      clearTimeout(timer);
+      resolve({ code: timedOut ? 1 : code, stdout, stderr: timedOut ? 'Extractor timed out after 10s' : stderr });
     });
   });
 }
@@ -217,6 +285,22 @@ async function handleApi(req, res) {
     return;
   }
 
+  if (u.pathname === '/api/boards') {
+    const boards = buildBoardCatalog();
+    const family = u.searchParams.get('family');
+    if (!family) {
+      sendJson(res, 200, { boards });
+      return;
+    }
+    const catalog = buildCatalog();
+    const familyMcus = new Set(catalog.mcusByFamily[family] || []);
+    sendJson(res, 200, {
+      family,
+      boards: boards.filter((b) => familyMcus.has(b.mcu))
+    });
+    return;
+  }
+
   if (u.pathname !== '/api/extract') {
     sendJson(res, 404, { error: 'Unknown API route' });
     return;
@@ -233,6 +317,12 @@ async function handleApi(req, res) {
     return;
   }
 
+  const cacheKey = `${u.searchParams.get('mcu') || u.searchParams.get('board')}:${u.searchParams.get('peripheral')}`;
+  if (extractCache.has(cacheKey)) {
+    sendJson(res, 200, extractCache.get(cacheKey));
+    return;
+  }
+
   const { code, stdout, stderr } = await runExtractor(parsed.args);
   if (code !== 0) {
     sendJson(res, 400, {
@@ -243,7 +333,9 @@ async function handleApi(req, res) {
   }
 
   try {
-    sendJson(res, 200, JSON.parse(stdout));
+    const payload = JSON.parse(stdout);
+    extractCache.set(cacheKey, payload);
+    sendJson(res, 200, payload);
   } catch (err) {
     sendJson(res, 500, {
       error: 'Extractor returned invalid JSON',
@@ -266,11 +358,16 @@ server.on('error', (err) => {
   process.exit(1);
 });
 
+console.log('Building MCU and board catalogs...');
+buildCatalog();
+buildBoardCatalog();
+
 server.listen(PORT, HOST, () => {
   console.log(`DMA helper server running on http://${HOST}:${PORT}`);
   console.log('API examples:');
   console.log(`  http://${HOST}:${PORT}/api/families`);
   console.log(`  http://${HOST}:${PORT}/api/mcus?family=STM32H7`);
+  console.log(`  http://${HOST}:${PORT}/api/boards?family=STM32H7`);
   console.log(`  http://${HOST}:${PORT}/api/peripherals?mcu=STM32H743ZITx`);
   console.log(`  http://${HOST}:${PORT}/api/extract?board=NUCLEO-F429ZI&peripheral=USART2`);
   console.log(`  http://${HOST}:${PORT}/api/extract?mcu=STM32H743ZITx&peripheral=USART1`);
