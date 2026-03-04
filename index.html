@@ -27,8 +27,19 @@
           <select id="family"></select>
         </label>
 
-        <label>MCU
+        <label>Target Type
+          <select id="target-type">
+            <option value="mcu" selected>Specific MCU</option>
+            <option value="board">Board</option>
+          </select>
+        </label>
+
+        <label id="mcu-label">MCU
           <select id="soc"></select>
+        </label>
+
+        <label id="board-label" style="display:none;">Board
+          <select id="board"></select>
         </label>
 
         <label>Peripheral Type

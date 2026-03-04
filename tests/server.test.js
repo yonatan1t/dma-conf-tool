@@ -62,6 +62,10 @@ test('web server: catalog and extractor endpoints work', { timeout: 60000 }, asy
   assert.ok(fam.families.includes('STM32F4'));
   assert.ok(fam.families.includes('STM32H7'));
 
+  const boards = await fetch(`${baseUrl}/api/boards?family=STM32F4`).then((r) => r.json());
+  assert.ok(Array.isArray(boards.boards));
+  assert.ok(boards.boards.some((b) => b.name === 'NUCLEO-F429ZI'));
+
   const per = await fetch(`${baseUrl}/api/peripherals?mcu=STM32C011D6Yx`).then((r) => r.json());
   assert.ok(per.peripherals.uart.includes('usart1'));
 

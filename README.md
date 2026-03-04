@@ -28,6 +28,16 @@ This serves:
 - Catalog API (`/api/families`, `/api/mcus`, `/api/peripherals`)
 - Extractor API (`/api/extract`) backed by `tools/cubemx-dma-extract.js`
 
+## Deploy on Render (free)
+
+This repo includes `render.yaml` and a `start` script, so you can deploy directly from GitHub:
+
+1. Push this repo to GitHub.
+2. In Render, create a new Blueprint and select the repo.
+3. Render will provision one free web service and run:
+   - Build: `npm install`
+   - Start: `npm start`
+
 Examples:
 
 ```bash
