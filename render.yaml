@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: dma-conf-tool
+    runtime: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    autoDeploy: true
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
