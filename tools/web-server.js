@@ -6,7 +6,7 @@ const http = require('http');
 const { URL } = require('url');
 const { spawn } = require('child_process');
 
-const HOST = process.env.HOST || '127.0.0.1';
+const HOST = process.env.HOST || '0.0.0.0';
 const PORT = Number(process.env.PORT || 8080);
 const ROOT = path.resolve(__dirname, '..');
 const EXTRACTOR = path.join(__dirname, 'cubemx-dma-extract.js');
