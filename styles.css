@@ -248,3 +248,99 @@ pre {
     flex: 1 1 100%;
   }
 }
+
+/* Welcome modal */
+.welcome-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.welcome-backdrop.hidden {
+  display: none;
+}
+
+.welcome-modal {
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  max-width: 520px;
+  width: 90%;
+  box-shadow: 0 16px 48px rgba(8, 38, 35, 0.18);
+}
+
+.welcome-modal h2 {
+  margin: 0 0 0.75rem;
+}
+
+.welcome-modal ul {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
+
+.welcome-modal li {
+  margin-bottom: 0.4rem;
+}
+
+.welcome-lead {
+  font-weight: 500;
+  margin-top: 0;
+}
+
+.welcome-scope {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.welcome-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+#welcome-start {
+  background: linear-gradient(120deg, var(--accent), #20b8a4);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.55rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+#welcome-start:hover {
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 0.55rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.btn-secondary:hover {
+  background: var(--line);
+}
+
+.badge-btn {
+  cursor: pointer;
+  border: 1px solid var(--line);
+  background: #ffffffd9;
+  font: inherit;
+}
+
+.badge-btn:hover {
+  background: var(--line);
+}

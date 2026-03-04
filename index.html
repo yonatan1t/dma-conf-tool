@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div id="welcome-backdrop" class="welcome-backdrop hidden">
+      <div class="welcome-modal" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+        <h2 id="welcome-title">Welcome to Zephyr DMA Config Helper</h2>
+        <p class="welcome-lead">Configuring DMA for STM32 peripherals in Zephyr is painful — hunting through reference manuals and CubeMX projects to find valid stream/channel/request-id combinations takes hours and is easy to get wrong.</p>
+        <p>This tool uses the <strong>STM32CubeMX database</strong> to automatically look up every valid DMA mapping for your peripheral and generate ready-to-use snippets:</p>
+        <ul>
+          <li>A <strong>DTS overlay</strong> (<code>dma.overlay</code>) with the correct <code>dmas</code> and <code>dma-names</code> properties</li>
+          <li>A <strong><code>prj.conf</code></strong> snippet with the right Kconfig symbols for your DMA family (classic DMA or GPDMA)</li>
+          <li>A <strong>checks</strong> list of things to verify before you build</li>
+        </ul>
+        <p class="welcome-scope">Supports all STM32 families · UART · SPI · MCU or board selection · share links</p>
+        <div class="welcome-actions">
+          <button id="welcome-about" class="btn-secondary">? About</button>
+          <button id="welcome-start">Get Started →</button>
+        </div>
+      </div>
+    </div>
+
     <div class="bg-shape bg-a"></div>
     <div class="bg-shape bg-b"></div>
 
@@ -16,6 +34,7 @@
       <div class="badge-row">
         <span id="db-version" class="badge">DB: loading...</span>
         <span class="badge">Scope: UART + SPI</span>
+        <button id="about-btn" class="badge badge-btn">? About</button>
       </div>
     </header>
 

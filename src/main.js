@@ -476,7 +476,26 @@ async function refreshForFamily(query = null) {
   el.dbVersion.textContent = `Families: ${state.familyList.length} | Boards: ${boards.length} (live CubeMX DB)`;
 }
 
+const WELCOME_KEY = 'dma-helper-welcomed';
+
+function showWelcome() {
+  document.getElementById('welcome-backdrop').classList.remove('hidden');
+}
+function hideWelcome() {
+  document.getElementById('welcome-backdrop').classList.add('hidden');
+  localStorage.setItem(WELCOME_KEY, '1');
+}
+
 async function init() {
+  if (!localStorage.getItem(WELCOME_KEY)) showWelcome();
+
+  document.getElementById('welcome-start').addEventListener('click', hideWelcome);
+  document.getElementById('welcome-about').addEventListener('click', showWelcome);
+  document.getElementById('about-btn').addEventListener('click', showWelcome);
+  document.getElementById('welcome-backdrop').addEventListener('click', (e) => {
+    if (e.target.id === 'welcome-backdrop') hideWelcome();
+  });
+
   await loadFamilies();
   if (!state.familyList.length) throw new Error('No STM32 families found in db/mcu');
 
